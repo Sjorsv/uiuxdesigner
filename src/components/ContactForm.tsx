@@ -19,6 +19,7 @@ const ContactForm = () => {
     company: "",
     message: "",
   });
+  const [freeConcept, setFreeConcept] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof ContactForm, string>>>({});
   const [submitted, setSubmitted] = useState(false);
 
