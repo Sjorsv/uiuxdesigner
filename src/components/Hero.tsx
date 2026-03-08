@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import caseGmt from "@/assets/case-gmt.png";
 
 const Hero = () => {
   return (
