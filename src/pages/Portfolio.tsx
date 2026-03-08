@@ -1,16 +1,19 @@
 import Navbar from "@/components/Navbar";
 import PortfolioGrid from "@/components/PortfolioGrid";
 import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransition";
 
 const Portfolio = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <div className="pt-20">
-        <PortfolioGrid />
+    <PageTransition>
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="pt-20">
+          <PortfolioGrid />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </PageTransition>
   );
 };
 
