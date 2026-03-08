@@ -11,7 +11,7 @@ const Comparison = () => {
           <h2 className="heading-lg mt-4">Waarom UIUXDESIGNER</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <motion.div
             className="bg-surface p-8 md:p-10"
             initial={{ opacity: 0, y: 20 }}

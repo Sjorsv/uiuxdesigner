@@ -81,8 +81,24 @@ const CaseSlider = () => {
 
       <div
         ref={scrollRef}
-        className="flex gap-8 overflow-x-auto scrollbar-hide px-6 md:px-12 lg:px-16 snap-x snap-mandatory pb-4"
+        className="flex gap-8 overflow-x-auto scrollbar-hide px-6 md:px-12 lg:px-16 snap-x snap-mandatory pb-4 cursor-grab active:cursor-grabbing"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        onMouseDown={(e) => {
+          const el = scrollRef.current;
+          if (!el) return;
+          let isDown = true;
+          const startX = e.pageX - el.offsetLeft;
+          const scrollLeft = el.scrollLeft;
+          const onMove = (ev: MouseEvent) => {
+            if (!isDown) return;
+            ev.preventDefault();
+            const x = ev.pageX - el.offsetLeft;
+            el.scrollLeft = scrollLeft - (x - startX);
+          };
+          const onUp = () => { isDown = false; document.removeEventListener("mousemove", onMove); document.removeEventListener("mouseup", onUp); };
+          document.addEventListener("mousemove", onMove);
+          document.addEventListener("mouseup", onUp);
+        }}
       >
         {cases.map((project, index) => (
           <motion.div
