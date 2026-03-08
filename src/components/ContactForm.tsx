@@ -19,6 +19,7 @@ const ContactForm = () => {
     company: "",
     message: "",
   });
+  const [freeConcept, setFreeConcept] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof ContactForm, string>>>({});
   const [submitted, setSubmitted] = useState(false);
 
@@ -149,6 +150,18 @@ const ContactForm = () => {
                     <p className="text-xs text-destructive mt-1 font-body">{errors.message}</p>
                   )}
                 </div>
+
+                <label className="flex items-center gap-3 cursor-pointer pt-2">
+                  <input
+                    type="checkbox"
+                    checked={freeConcept}
+                    onChange={(e) => setFreeConcept(e.target.checked)}
+                    className="w-5 h-5 rounded border-border accent-brand cursor-pointer"
+                  />
+                  <span className="font-body text-sm text-muted-foreground">
+                    Ik ontvang graag een gratis concept
+                  </span>
+                </label>
 
                 <div className="pt-6">
                   <button type="submit" className="btn-primary">
