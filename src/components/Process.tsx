@@ -26,13 +26,12 @@ const Process = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
-              whileHover={{ y: -6 }}
             >
-              <span className="font-display font-bold text-5xl md:text-6xl text-border block mb-6 transition-colors duration-300 group-hover:text-foreground">
+              <span className="font-display font-bold text-5xl md:text-6xl text-border block mb-6 transition-colors duration-500 ease-out group-hover:text-foreground">
                 {step.number}
               </span>
-              <div className="w-12 h-px bg-foreground mb-6 transition-all duration-300 group-hover:w-full group-hover:bg-brand" />
-              <h3 className="font-display font-bold text-xl text-foreground mb-3 transition-colors duration-300 group-hover:text-brand">{step.title}</h3>
+              <div className="w-12 h-px bg-foreground mb-6 transition-colors duration-500 ease-out group-hover:bg-brand" />
+              <h3 className="font-display font-bold text-xl text-foreground mb-3">{step.title}</h3>
               <p className="body-md">{step.description}</p>
             </motion.div>
           ))}
