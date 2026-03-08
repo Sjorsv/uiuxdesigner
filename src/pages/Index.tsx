@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import CaseSlider from "@/components/CaseSlider";
-import PortfolioGrid from "@/components/PortfolioGrid";
 import Services from "@/components/Services";
 import Comparison from "@/components/Comparison";
 import Process from "@/components/Process";
@@ -15,7 +14,6 @@ const Index = () => {
       <Navbar />
       <Hero />
       <CaseSlider />
-      <PortfolioGrid />
       <Services />
       <Comparison />
       <Process />
