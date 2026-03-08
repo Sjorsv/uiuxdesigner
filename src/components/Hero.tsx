@@ -26,18 +26,19 @@ const Hero = () => {
               Websites voor <span className="text-brand">groeiende</span> bedrijven.
             </h1>
 
-            {/* Experience badge */}
-            <motion.div
-              className="absolute -top-4 -right-8 md:-right-20 lg:-right-24 w-24 h-24 md:w-28 md:h-28 rounded-full bg-brand flex flex-col items-center justify-center text-brand-foreground shadow-[0_4px_30px_hsl(var(--brand)/0.3)]"
+            {/* CTA badge */}
+            <motion.a
+              href="#contact"
+              className="absolute -top-4 -right-8 md:-right-20 lg:-right-24 w-28 h-28 md:w-32 md:h-32 rounded-full bg-brand flex flex-col items-center justify-center text-brand-foreground shadow-[0_4px_30px_hsl(var(--brand)/0.3)] cursor-pointer no-underline"
               initial={{ scale: 0, rotate: -20 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ duration: 0.6, delay: 0.5, type: "spring", stiffness: 200 }}
               whileHover={{ scale: 1.1, rotate: 5 }}
             >
-              <span className="font-display font-bold text-2xl md:text-3xl leading-none">6+</span>
-              <span className="font-body text-[10px] md:text-xs uppercase tracking-wider leading-tight mt-0.5">jaar</span>
-              <span className="font-body text-[10px] md:text-xs uppercase tracking-wider leading-tight">ervaring</span>
-            </motion.div>
+              <span className="font-body text-[9px] md:text-[10px] uppercase tracking-wider leading-tight text-center px-3">Vraag gratis</span>
+              <span className="font-display font-bold text-sm md:text-base leading-tight text-center">ontwerp</span>
+              <span className="font-body text-[9px] md:text-[10px] uppercase tracking-wider leading-tight text-center">aan →</span>
+            </motion.a>
           </div>
 
           <p className="body-lg mb-12 max-w-md">
