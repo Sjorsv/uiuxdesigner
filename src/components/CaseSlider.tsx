@@ -121,7 +121,7 @@ const CaseSlider = () => {
         </div>
       </div>
 
-      <div className="swiss-container mt-12">
+      <div className="swiss-container mt-12 sm:hidden">
         <a href="/portfolio" className="btn-outline">
           Bekijk alle projecten
         </a>
