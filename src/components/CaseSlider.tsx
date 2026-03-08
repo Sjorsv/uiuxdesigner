@@ -40,6 +40,9 @@ const cases = [
 
 const CaseSlider = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef(false);
+  const dragStartXRef = useRef(0);
+  const dragStartScrollLeftRef = useRef(0);
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
@@ -49,6 +52,28 @@ const CaseSlider = () => {
         behavior: "smooth",
       });
     }
+  };
+
+  const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    isDraggingRef.current = true;
+    dragStartXRef.current = event.clientX;
+    dragStartScrollLeftRef.current = el.scrollLeft;
+    el.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const el = scrollRef.current;
+    if (!el || !isDraggingRef.current) return;
+
+    const deltaX = event.clientX - dragStartXRef.current;
+    el.scrollLeft = dragStartScrollLeftRef.current - deltaX;
+  };
+
+  const stopDragging = () => {
+    isDraggingRef.current = false;
   };
 
   return (
@@ -81,24 +106,14 @@ const CaseSlider = () => {
 
       <div
         ref={scrollRef}
-        className="flex gap-8 overflow-x-auto scrollbar-hide px-6 md:px-12 lg:px-16 snap-x snap-mandatory pb-4 cursor-grab active:cursor-grabbing"
+        className="flex gap-8 overflow-x-auto scrollbar-hide px-6 md:px-12 lg:px-16 snap-x snap-mandatory pb-4 cursor-grab active:cursor-grabbing select-none"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        onMouseDown={(e) => {
-          const el = scrollRef.current;
-          if (!el) return;
-          let isDown = true;
-          const startX = e.pageX - el.offsetLeft;
-          const scrollLeft = el.scrollLeft;
-          const onMove = (ev: MouseEvent) => {
-            if (!isDown) return;
-            ev.preventDefault();
-            const x = ev.pageX - el.offsetLeft;
-            el.scrollLeft = scrollLeft - (x - startX);
-          };
-          const onUp = () => { isDown = false; document.removeEventListener("mousemove", onMove); document.removeEventListener("mouseup", onUp); };
-          document.addEventListener("mousemove", onMove);
-          document.addEventListener("mouseup", onUp);
-        }}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={stopDragging}
+        onPointerLeave={stopDragging}
+        onPointerCancel={stopDragging}
+        onDragStart={(event) => event.preventDefault()}
       >
         {cases.map((project, index) => (
           <motion.div
