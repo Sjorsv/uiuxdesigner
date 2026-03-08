@@ -1,6 +1,7 @@
-import { useRef, type PointerEvent as ReactPointerEvent } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
 import caseGmt from "@/assets/case-gmt.png";
 import caseMaxled from "@/assets/case-maxled.png";
 import caseBouwmeester from "@/assets/case-bouwmeester.png";
@@ -39,79 +40,37 @@ const cases = [
 ];
 
 const CaseSlider = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const isDraggingRef = useRef(false);
-  const dragStartXRef = useRef(0);
-  const dragStartScrollLeftRef = useRef(0);
-  const velocityRef = useRef(0);
-  const lastXRef = useRef(0);
-  const lastTimeRef = useRef(0);
-  const rafRef = useRef<number | null>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    dragFree: true,
+    containScroll: "trimSnaps",
+  });
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  const updateNavigationState = useCallback(() => {
+    if (!emblaApi) return;
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    updateNavigationState();
+    emblaApi.on("select", updateNavigationState);
+    emblaApi.on("reInit", updateNavigationState);
+
+    return () => {
+      emblaApi.off("select", updateNavigationState);
+      emblaApi.off("reInit", updateNavigationState);
+    };
+  }, [emblaApi, updateNavigationState]);
 
   const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const amount = scrollRef.current.clientWidth * 0.7;
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -amount : amount,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const startMomentum = () => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    const animate = () => {
-      if (Math.abs(velocityRef.current) < 0.5) {
-        velocityRef.current = 0;
-        return;
-      }
-      el.scrollLeft += velocityRef.current;
-      velocityRef.current *= 0.95; // friction
-      rafRef.current = requestAnimationFrame(animate);
-    };
-    rafRef.current = requestAnimationFrame(animate);
-  };
-
-  const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    velocityRef.current = 0;
-
-    isDraggingRef.current = true;
-    dragStartXRef.current = event.clientX;
-    dragStartScrollLeftRef.current = el.scrollLeft;
-    lastXRef.current = event.clientX;
-    lastTimeRef.current = Date.now();
-    el.setPointerCapture(event.pointerId);
-  };
-
-  const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
-    const el = scrollRef.current;
-    if (!el || !isDraggingRef.current) return;
-
-    const now = Date.now();
-    const dt = now - lastTimeRef.current;
-    const dx = event.clientX - lastXRef.current;
-
-    if (dt > 0) {
-      velocityRef.current = -dx / dt * 16; // normalize to ~16ms frame
-    }
-
-    lastXRef.current = event.clientX;
-    lastTimeRef.current = now;
-
-    const deltaX = event.clientX - dragStartXRef.current;
-    el.scrollLeft = dragStartScrollLeftRef.current - deltaX;
-  };
-
-  const stopDragging = () => {
-    if (!isDraggingRef.current) return;
-    isDraggingRef.current = false;
-    startMomentum();
+    if (!emblaApi) return;
+    if (direction === "left") emblaApi.scrollPrev();
+    else emblaApi.scrollNext();
   };
 
   return (
@@ -126,14 +85,16 @@ const CaseSlider = () => {
           <div className="hidden sm:flex gap-3">
             <button
               onClick={() => scroll("left")}
-              className="w-12 h-12 border border-border flex items-center justify-center hover:border-foreground transition-colors"
+              disabled={!canScrollPrev}
+              className="w-12 h-12 border border-border flex items-center justify-center hover:border-foreground disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               aria-label="Vorige"
             >
               <ArrowLeft className="w-5 h-5 text-foreground" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="w-12 h-12 border border-border flex items-center justify-center hover:border-foreground transition-colors"
+              disabled={!canScrollNext}
+              className="w-12 h-12 border border-border flex items-center justify-center hover:border-foreground disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               aria-label="Volgende"
             >
               <ArrowRight className="w-5 h-5 text-foreground" />
@@ -142,47 +103,37 @@ const CaseSlider = () => {
         </div>
       </div>
 
-      <div
-        ref={scrollRef}
-        className="flex gap-8 overflow-x-auto scrollbar-hide px-6 md:px-12 lg:px-16 snap-x snap-mandatory pb-4 cursor-grab active:cursor-grabbing select-none"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={stopDragging}
-        onPointerLeave={stopDragging}
-        onPointerCancel={stopDragging}
-        onDragStart={(event) => event.preventDefault()}
-      >
-        {cases.map((project, index) => (
-          <motion.div
-            key={project.title}
-            className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[55vw] lg:w-[45vw] snap-start group cursor-pointer"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-          >
-            <div className="bg-surface rounded-sm overflow-hidden mb-6 relative">
-              <div className="overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={`${project.title} website mockup`}
-                  draggable={false}
-                  className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
-                />
+      <div className="overflow-hidden px-6 md:px-12 lg:px-16 cursor-grab active:cursor-grabbing" ref={emblaRef}>
+        <div className="flex gap-8 select-none">
+          {cases.map((project, index) => (
+            <motion.div
+              key={project.title}
+              className="flex-[0_0_85vw] sm:flex-[0_0_70vw] md:flex-[0_0_55vw] lg:flex-[0_0_45vw] group"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <div className="bg-surface rounded-sm overflow-hidden mb-6 relative">
+                <div className="overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} website mockup`}
+                    draggable={false}
+                    className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <span className="section-label mb-2 block">{project.industry}</span>
-                <h3 className="font-display font-bold text-xl md:text-2xl text-foreground mb-2">
-                  {project.title}
-                </h3>
-                <p className="body-md max-w-md">{project.description}</p>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <span className="section-label mb-2 block">{project.industry}</span>
+                  <h3 className="font-display font-bold text-xl md:text-2xl text-foreground mb-2">{project.title}</h3>
+                  <p className="body-md max-w-md">{project.description}</p>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       <div className="swiss-container mt-12">
