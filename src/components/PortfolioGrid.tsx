@@ -4,23 +4,23 @@ import { useNavigate } from "react-router-dom";
 import caseGmt from "@/assets/case-gmt.png";
 import caseMaxled from "@/assets/case-maxled.png";
 import caseBouwmeester from "@/assets/case-bouwmeester.png";
+import caseLohues from "@/assets/case-lohues.png";
+import caseBatterij from "@/assets/case-batterij.png";
+import caseTheoriedoen from "@/assets/case-theoriedoen.png";
+import caseSoortenregister from "@/assets/case-soortenregister.png";
+import caseBiodiversity from "@/assets/case-biodiversity.png";
+import caseJawel from "@/assets/case-jawel.png";
 
 const projects = [
-  { title: "GMT Equipment", industry: "Industrial", description: "Website redesign met focus op conversie", image: caseGmt },
-  { title: "MaxLED", industry: "E-commerce", description: "E-commerce platform redesign", image: caseMaxled },
-  { title: "Bouwmeester", industry: "Bouw", description: "Professionele bedrijfswebsite", image: caseBouwmeester },
-  { title: "HBM Juristen", industry: "Legal", description: "Juridisch kantoor website", image: caseGmt },
-  { title: "Iriszorg", industry: "Recruitment", description: "Recruitment platform redesign", image: caseMaxled },
-  { title: "De Steigerman", industry: "Lokaal bedrijf", description: "Lokale dienstverlener website", image: caseBouwmeester },
-  { title: "TechFlow Solutions", industry: "Corporate", description: "Corporate website redesign", image: caseGmt },
-  { title: "GreenEnergy NL", industry: "Energie", description: "Duurzame energie platform", image: caseMaxled },
-  { title: "Studio Blend", industry: "Creatief", description: "Portfolio en brand website", image: caseBouwmeester },
-  { title: "Autobedrijf Jansen", industry: "Automotive", description: "Automotive dealer website", image: caseGmt },
-  { title: "FreshMarkt", industry: "E-commerce", description: "Online supermarkt platform", image: caseMaxled },
-  { title: "Kliniek Plus", industry: "Zorg", description: "Medische kliniek website", image: caseBouwmeester },
-  { title: "Van Dijk Transport", industry: "Logistiek", description: "Transport bedrijf website", image: caseGmt },
-  { title: "FinAdvies", industry: "Financieel", description: "Financieel adviesbureau", image: caseMaxled },
-  { title: "SportClub Elite", industry: "Sport", description: "Sportschool website en platform", image: caseBouwmeester },
+  { title: "GMT Equipment", industry: "Industrial", description: "Website redesign met focus op conversie en technische merkidentiteit", image: caseGmt },
+  { title: "MaxLED", industry: "E-commerce", description: "E-commerce platform voor verhuur en verkoop van ledschermen", image: caseMaxled },
+  { title: "Bouwmeester", industry: "Bouw & Installatie", description: "Professionele website voor loodgieter- en installatiebedrijf", image: caseBouwmeester },
+  { title: "Lohues Installatie Techniek", industry: "Energie & Duurzaamheid", description: "Website voor familiebedrijf in verduurzaming", image: caseLohues },
+  { title: "Batterij-recyclen.nl", industry: "Duurzaamheid", description: "Platform voor verantwoord batterijbeheer en recycling", image: caseBatterij },
+  { title: "Theoriedoen.be", industry: "EdTech", description: "Online platform voor autotheorie-examens", image: caseTheoriedoen },
+  { title: "Nederlands Soortenregister", industry: "Overheid & Wetenschap", description: "Database voor Nederlandse biodiversiteit", image: caseSoortenregister },
+  { title: "Biodiversity", industry: "Wetenschap", description: "Platform voor het ontdekken van soorten", image: caseBiodiversity },
+  { title: "Jawel Infra", industry: "Infrastructuur", description: "Krachtige website voor infrastructuurbedrijf", image: caseJawel },
 ];
 
 const PortfolioGrid = () => {

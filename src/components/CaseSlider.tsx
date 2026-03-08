@@ -1,15 +1,20 @@
 import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import caseGmt from "@/assets/case-gmt.png";
 import caseMaxled from "@/assets/case-maxled.png";
 import caseBouwmeester from "@/assets/case-bouwmeester.png";
+import caseLohues from "@/assets/case-lohues.png";
+import caseBatterij from "@/assets/case-batterij.png";
+import caseTheoriedoen from "@/assets/case-theoriedoen.png";
+import caseSoortenregister from "@/assets/case-soortenregister.png";
+import caseBiodiversity from "@/assets/case-biodiversity.png";
+import caseJawel from "@/assets/case-jawel.png";
 
 const cases = [
   {
     title: "GMT Equipment",
-    description: "Website redesign voor GMT Equipment fabrikant van innovatieve zaag- en grijpsystemen. De focus lag op structuur, conversie en het versterken van hun technische merkidentiteit.",
+    description: "Website redesign voor GMT Equipment, fabrikant van innovatieve zaag- en grijpsystemen. De focus lag op structuur, conversie en het versterken van hun technische merkidentiteit.",
     industry: "Industrial",
     image: caseGmt,
   },
@@ -26,16 +31,40 @@ const cases = [
     image: caseBouwmeester,
   },
   {
-    title: "HBM Juristen",
-    description: "Website voor een juridisch kantoor met focus op professionele uitstraling, heldere communicatie en vertrouwen.",
-    industry: "Legal",
-    image: caseGmt,
+    title: "Lohues Installatie Techniek",
+    description: "Website voor een familiebedrijf in verduurzaming. Focus op huisinstallaties, zonnepanelen en duurzame energieoplossingen.",
+    industry: "Energie & Duurzaamheid",
+    image: caseLohues,
   },
   {
-    title: "Iriszorg",
-    description: "Recruitment platform redesign gericht op het aantrekken van nieuw personeel in de zorgsector.",
-    industry: "Recruitment",
-    image: caseMaxled,
+    title: "Batterij-recyclen.nl",
+    description: "Platform voor verantwoord batterijbeheer en recycling. Focus op de transitie naar een groene economie en inzamelpunten.",
+    industry: "Duurzaamheid",
+    image: caseBatterij,
+  },
+  {
+    title: "Theoriedoen.be",
+    description: "Online platform voor autotheorie-examens in België. Focus op conversie, gebruiksvriendelijkheid en hoge slagingspercentages.",
+    industry: "EdTech",
+    image: caseTheoriedoen,
+  },
+  {
+    title: "Nederlands Soortenregister",
+    description: "Centrale database voor Nederlandse biodiversiteit met gestandaardiseerde referentiedata, foto's en geluiden.",
+    industry: "Overheid & Wetenschap",
+    image: caseSoortenregister,
+  },
+  {
+    title: "Biodiversity",
+    description: "Vernieuwend platform voor het zoeken, analyseren en ontdekken van soorten. Moderne interface met geavanceerde zoekfunctionaliteit.",
+    industry: "Wetenschap",
+    image: caseBiodiversity,
+  },
+  {
+    title: "Jawel Infra",
+    description: "Krachtige website voor een infrastructuurbedrijf. Focus op betrouwbaarheid, diensten en projectpresentatie.",
+    industry: "Infrastructuur",
+    image: caseJawel,
   },
 ];
 
