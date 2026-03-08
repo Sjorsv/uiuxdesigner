@@ -127,16 +127,18 @@ const CaseSlider = () => {
           {cases.map((project, index) => (
             <motion.div
               key={project.title}
-              className={`flex-[0_0_85vw] sm:flex-[0_0_70vw] md:flex-[0_0_55vw] lg:flex-[0_0_45vw] group cursor-none ${(project as any).slug ? "" : ""}`}
+              className="flex-[0_0_85vw] sm:flex-[0_0_70vw] md:flex-[0_0_55vw] lg:flex-[0_0_45vw] group cursor-none"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               onMouseEnter={() => setHovering(true)}
               onMouseLeave={() => setHovering(false)}
-              onClick={() => {
-                if (!isDragging && (project as any).slug) {
-                  navigate((project as any).slug);
+              onPointerDown={(e) => setDragStartPos({ x: e.clientX, y: e.clientY })}
+              onPointerUp={(e) => {
+                const dist = Math.abs(e.clientX - dragStartPos.x) + Math.abs(e.clientY - dragStartPos.y);
+                if (dist < 5 && project.slug) {
+                  navigate(project.slug);
                 }
               }}
             >

@@ -58,6 +58,9 @@ const PortfolioGrid = () => {
               transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
               onMouseEnter={() => setHovering(true)}
               onMouseLeave={() => setHovering(false)}
+              onClick={() => {
+                if ((project as any).slug) navigate((project as any).slug);
+              }}
             >
               <div className="bg-surface rounded-sm overflow-hidden mb-4 relative">
                 <div className="overflow-hidden">
