@@ -137,7 +137,7 @@ const CaseSlider = () => {
       </div>
 
       <div className="swiss-container mt-12">
-        <a href="#portfolio" className="btn-outline">
+        <a href="/portfolio" className="btn-outline">
           Bekijk alle projecten
         </a>
       </div>
