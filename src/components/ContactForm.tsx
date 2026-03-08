@@ -59,7 +59,7 @@ const ContactForm = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="section-number">06</span>
+            <span className="section-number">07</span>
             <span className="section-label ml-4">Contact</span>
             <h2 className="heading-lg mt-4 mb-8">
               Laten we<br />samenwerken.
