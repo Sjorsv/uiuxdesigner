@@ -45,7 +45,7 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="body-lg mb-8">
+            <p className="body-lg mb-8 font-medium max-w-none whitespace-nowrap">
               Ik ontwerp en bouw moderne websites voor bedrijven in uiteenlopende sectoren.
             </p>
             <p className="body-md mb-8">
