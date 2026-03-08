@@ -29,14 +29,15 @@ const Hero = () => {
             {/* CTA badge */}
             <motion.a
               href="#contact"
-              className="absolute -top-4 -right-8 md:-right-20 lg:-right-24 w-30 h-30 md:w-36 md:h-36 rounded-full bg-brand flex flex-col items-center justify-center text-brand-foreground shadow-[0_4px_30px_hsl(var(--brand)/0.3)] cursor-pointer no-underline transition-transform duration-200 hover:scale-110"
+              className="absolute -top-4 -right-8 md:-right-20 lg:-right-24 w-28 h-28 md:w-32 md:h-32 rounded-full bg-brand flex flex-col items-center justify-center text-brand-foreground shadow-[0_4px_30px_hsl(var(--brand)/0.3)] cursor-pointer no-underline"
               initial={{ scale: 0, rotate: -20 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ duration: 0.6, delay: 0.5, type: "spring", stiffness: 200 }}
+              whileHover={{ scale: 1.1, rotate: 5 }}
             >
-              <span className="font-body text-[10px] md:text-xs uppercase tracking-wider leading-tight text-center px-3">Vraag gratis</span>
-              <span className="font-display font-bold text-base md:text-lg leading-tight text-center">ontwerp</span>
-              <span className="font-body text-[10px] md:text-xs uppercase tracking-wider leading-tight text-center">aan →</span>
+              <span className="font-body text-[9px] md:text-[10px] uppercase tracking-wider leading-tight text-center px-3">Vraag gratis</span>
+              <span className="font-display font-bold text-sm md:text-base leading-tight text-center">ontwerp</span>
+              <span className="font-body text-[9px] md:text-[10px] uppercase tracking-wider leading-tight text-center">aan →</span>
             </motion.a>
           </div>
 
