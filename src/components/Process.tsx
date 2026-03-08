@@ -9,7 +9,7 @@ const steps = [
 
 const Process = () => {
   return (
-    <section className="py-32 border-t border-border s-curve-shadow" id="process">
+    <section className="py-32 border-t border-border" id="process">
       <div className="swiss-container">
         <div className="mb-20">
           <span className="section-number">05</span>
