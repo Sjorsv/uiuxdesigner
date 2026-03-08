@@ -129,6 +129,7 @@ const CaseSlider = () => {
                 <img
                   src={project.image}
                   alt={`${project.title} website mockup`}
+                  draggable={false}
                   className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
