@@ -69,10 +69,10 @@ const ContactForm = () => {
             </p>
             <div className="space-y-4">
               <a
-                href="mailto:hello@uiuxdesigner.nl"
+                href="mailto:uiuxdesignernl@gmail.com"
                 className="block font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                hello@uiuxdesigner.nl
+                uiuxdesignernl@gmail.com
               </a>
             </div>
           </motion.div>
