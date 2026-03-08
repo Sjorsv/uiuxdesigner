@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 
 const CursorBadge = ({ text, active }: { text: string; active: boolean }) => {
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
-  const springX = useSpring(cursorX, { stiffness: 300, damping: 25 });
-  const springY = useSpring(cursorY, { stiffness: 300, damping: 25 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
