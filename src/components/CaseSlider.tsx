@@ -91,22 +91,12 @@ const CaseSlider = () => {
 
   useEffect(() => {
     if (!emblaApi) return;
-
     updateNavigationState();
     emblaApi.on("select", updateNavigationState);
     emblaApi.on("reInit", updateNavigationState);
-
-    const onPointerDown = () => setIsDragging(false);
-    const onPointerMove = () => setIsDragging(true);
-
-    emblaApi.on("pointerDown", onPointerDown);
-    emblaApi.on("pointerMove", onPointerMove);
-
     return () => {
       emblaApi.off("select", updateNavigationState);
       emblaApi.off("reInit", updateNavigationState);
-      emblaApi.off("pointerDown", onPointerDown);
-      emblaApi.off("pointerMove", onPointerMove);
     };
   }, [emblaApi, updateNavigationState]);
 
