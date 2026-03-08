@@ -80,26 +80,11 @@ const CaseSlider = () => {
           <div>
             <span className="section-number">01</span>
             <span className="section-label ml-4">Featured Cases</span>
-            <h2 className="heading-lg mt-4">Geselecteerd werk</h2>
+            <h2 className="heading-lg mt-4">Onze cases</h2>
           </div>
-          <div className="hidden sm:flex gap-3">
-            <button
-              onClick={() => scroll("left")}
-              disabled={!canScrollPrev}
-              className="w-12 h-12 border border-border flex items-center justify-center hover:border-foreground disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-              aria-label="Vorige"
-            >
-              <ArrowLeft className="w-5 h-5 text-foreground" />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              disabled={!canScrollNext}
-              className="w-12 h-12 border border-border flex items-center justify-center hover:border-foreground disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-              aria-label="Volgende"
-            >
-              <ArrowRight className="w-5 h-5 text-foreground" />
-            </button>
-          </div>
+          <a href="/portfolio" className="btn-outline hidden sm:inline-flex">
+            Bekijk alle projecten
+          </a>
         </div>
       </div>
 
@@ -136,7 +121,7 @@ const CaseSlider = () => {
         </div>
       </div>
 
-      <div className="swiss-container mt-12">
+      <div className="swiss-container mt-12 sm:hidden">
         <a href="/portfolio" className="btn-outline">
           Bekijk alle projecten
         </a>
