@@ -24,9 +24,19 @@ const projects = [
 ];
 
 const PortfolioGrid = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-32 border-t border-border" id="portfolio">
       <div className="swiss-container">
+        <button
+          onClick={() => navigate(-1)}
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300 font-body text-sm uppercase tracking-wide mb-8"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Ga terug
+        </button>
+
         <div className="mb-16">
           <span className="section-number">02</span>
           <span className="section-label ml-4">Portfolio</span>
