@@ -42,6 +42,20 @@ const Comparison = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.15 }}
           >
+            {/* Experience badge */}
+            <motion.div
+              className="absolute -top-3 -right-3 md:top-4 md:right-4 w-24 h-24 md:w-28 md:h-28 rounded-full bg-brand flex flex-col items-center justify-center text-brand-foreground shadow-[0_4px_30px_hsl(var(--brand)/0.3)] z-10"
+              initial={{ scale: 0, rotate: -20 }}
+              whileInView={{ scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4, type: "spring", stiffness: 200 }}
+              whileHover={{ scale: 1.1, rotate: 5 }}
+            >
+              <span className="font-display font-bold text-2xl md:text-3xl leading-none">6+</span>
+              <span className="font-body text-[10px] md:text-xs uppercase tracking-wider leading-tight mt-0.5">jaar</span>
+              <span className="font-body text-[10px] md:text-xs uppercase tracking-wider leading-tight">ervaring</span>
+            </motion.div>
+
             <div className="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent pointer-events-none" />
             <div className="relative">
               <h3 className="font-display font-bold text-xl text-primary-foreground mb-10">UIUXDESIGNER.NL</h3>
