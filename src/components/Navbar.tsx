@@ -24,7 +24,7 @@ const Navbar = () => {
       }`}
     >
       <div className="swiss-container flex items-center justify-between h-20">
-        <a href="#" className="font-display font-bold text-lg text-foreground tracking-tight">
+        <a href="/" className="font-display font-bold text-lg text-foreground tracking-tight">
           uiuxdesigner.nl
         </a>
 
