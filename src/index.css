@@ -77,23 +77,6 @@
   }
 }
 
-/* S-curve shadow dividers between sections */
-.s-curve-shadow {
-  position: relative;
-}
-
-.s-curve-shadow::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: radial-gradient(ellipse 60% 40px at 30% 100%, hsl(var(--background) / 0.0) 0%, hsl(0 0% 0% / 0.15) 100%),
-              radial-gradient(ellipse 50% 30px at 70% 100%, hsl(var(--background) / 0.0) 0%, hsl(0 0% 0% / 0.1) 100%);
-  pointer-events: none;
-}
-
 @layer components {
   .section-label {
     @apply text-xs font-body uppercase tracking-[0.3em] text-muted-foreground;
