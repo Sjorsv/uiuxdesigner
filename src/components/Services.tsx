@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 const services = [
   { title: "Website Design", description: "Volledig op maat ontworpen websites die jouw bedrijf versterken en bezoekers begeleiden naar actie." },
@@ -26,20 +27,24 @@ const Services = () => {
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                className="border-t border-border py-8 group cursor-pointer"
+                className="border-t border-border py-8 group cursor-pointer transition-colors duration-300 hover:bg-surface/50 -mx-6 px-6 rounded-xl"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ x: 8 }}
               >
                 <div className="flex items-start justify-between gap-8">
                   <div>
-                    <h3 className="font-display font-bold text-xl md:text-2xl text-foreground group-hover:text-secondary transition-colors">
+                    <h3 className="font-display font-bold text-xl md:text-2xl text-foreground group-hover:text-brand transition-colors duration-300">
                       {service.title}
                     </h3>
                     <p className="body-md mt-2 max-w-lg">{service.description}</p>
                   </div>
-                  <span className="section-number mt-2">{String(index + 1).padStart(2, "0")}</span>
+                  <div className="flex items-center gap-3 mt-2">
+                    <span className="section-number">{String(index + 1).padStart(2, "0")}</span>
+                    <ArrowRight className="w-4 h-4 text-brand opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                  </div>
                 </div>
               </motion.div>
             ))}
