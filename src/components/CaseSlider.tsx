@@ -70,6 +70,7 @@ const cases = [
 ];
 
 const CaseSlider = () => {
+  const [hovering, setHovering] = useState(false);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     dragFree: true,
