@@ -137,6 +137,11 @@ const CaseSlider = () => {
                     className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
+                <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center pointer-events-none">
+                  <span className="bg-brand text-brand-foreground font-body font-medium text-sm uppercase tracking-wide px-6 py-3 rounded-full shadow-lg scale-90 group-hover:scale-100 transition-transform duration-500">
+                    Bekijk case
+                  </span>
+                </div>
               </div>
               <div className="flex items-start justify-between gap-4">
                 <div>
