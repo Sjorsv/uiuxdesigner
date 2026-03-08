@@ -1,6 +1,10 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import portrait from "@/assets/portrait.jpg";
 
 const About = () => {
+  const [hovering, setHovering] = useState(false);
+
   return (
     <section className="py-32 border-t border-border" id="about">
       <div className="swiss-container">
@@ -8,7 +12,30 @@ const About = () => {
           <div className="lg:col-span-4">
             <span className="section-number">06</span>
             <span className="section-label ml-4">Over</span>
-            <h2 className="heading-lg mt-4">Over UIUXDESIGNER</h2>
+            <div
+              className="relative inline-block cursor-pointer"
+              onMouseEnter={() => setHovering(true)}
+              onMouseLeave={() => setHovering(false)}
+            >
+              <h2 className="heading-lg mt-4">Over UIUXDESIGNER</h2>
+              <AnimatePresence>
+                {hovering && (
+                  <motion.div
+                    className="absolute -top-6 -right-10 md:-right-14 w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-brand shadow-[0_4px_20px_hsl(var(--brand)/0.3)] z-10"
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0, opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  >
+                    <img
+                      src={portrait}
+                      alt="Portrait"
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           <motion.div
