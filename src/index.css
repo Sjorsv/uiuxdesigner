@@ -122,6 +122,6 @@
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 px-8 py-4 border border-border text-foreground font-body font-medium text-sm tracking-wide uppercase hover:border-foreground transition-colors duration-300;
+    @apply inline-flex items-center gap-2 px-8 py-4 border border-brand/40 text-foreground font-body font-medium text-sm tracking-wide uppercase hover:border-brand transition-colors duration-300;
   }
 }
