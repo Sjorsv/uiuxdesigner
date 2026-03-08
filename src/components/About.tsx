@@ -19,13 +19,13 @@ const About = () => {
             transition={{ duration: 0.6 }}
           >
             <p className="body-lg mb-8">
-              UIUXDESIGNER.NL is een onafhankelijke webdesigner gevestigd in Nederland, werkzaam voor bedrijven in uiteenlopende sectoren.
+              Ik ontwerp en bouw moderne websites voor bedrijven in uiteenlopende sectoren.
             </p>
             <p className="body-md mb-8">
-              Met een focus op helderheid, modern design en conversie-gerichte websites help ik groeiende bedrijven hun online aanwezigheid naar een hoger niveau te tillen.
+              Mijn focus ligt op helder design, sterke structuur en websites die bezoekers omzetten in klanten.
             </p>
             <p className="body-md">
-              Elke website wordt ontworpen met aandacht voor detail, sterke typografie en een gebruikerservaring die resultaat oplevert.
+              Elke website wordt zorgvuldig ontworpen met aandacht voor typografie, gebruiksvriendelijkheid en een uitstraling die past bij het bedrijf erachter.
             </p>
           </motion.div>
         </div>
