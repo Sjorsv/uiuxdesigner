@@ -36,6 +36,9 @@
 
     --radius: 0.5rem;
 
+    --brand: 25 28% 41%;
+    --brand-foreground: 40 20% 95%;
+
     --surface: 0 0% 6.7%;
 
     --sidebar-background: 0 0% 6.7%;
@@ -79,11 +82,11 @@
 
 @layer components {
   .section-label {
-    @apply text-xs font-body uppercase tracking-[0.3em] text-muted-foreground;
+    @apply text-xs font-body uppercase tracking-[0.3em] text-brand;
   }
 
   .section-number {
-    @apply text-xs font-body font-medium text-muted-foreground tabular-nums;
+    @apply text-xs font-body font-medium text-brand tabular-nums;
   }
 
   .grid-line {
@@ -115,10 +118,10 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background font-body font-medium text-sm tracking-wide uppercase hover:bg-secondary transition-colors duration-300;
+    @apply inline-flex items-center gap-2 px-8 py-4 bg-brand text-brand-foreground font-body font-medium text-sm tracking-wide uppercase hover:bg-brand/80 transition-colors duration-300;
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 px-8 py-4 border border-border text-foreground font-body font-medium text-sm tracking-wide uppercase hover:border-foreground transition-colors duration-300;
+    @apply inline-flex items-center gap-2 px-8 py-4 border border-brand/40 text-foreground font-body font-medium text-sm tracking-wide uppercase hover:border-brand transition-colors duration-300;
   }
 }

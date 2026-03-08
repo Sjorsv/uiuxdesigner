@@ -12,7 +12,7 @@ const FinalCTA = () => {
         >
           <p className="section-label mb-8">Klaar om te beginnen?</p>
           <h2 className="heading-xl mb-12 max-w-4xl mx-auto">
-            LET'S BUILD YOUR NEXT WEBSITE.
+            LET'S BUILD YOUR <span className="text-brand">NEXT</span> WEBSITE.
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="mailto:hello@uiuxdesigner.nl" className="btn-primary">
