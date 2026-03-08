@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 
 const services = [
-  { title: "Website Design", description: "Volledig op maat ontworpen websites die jouw merk versterken en bezoekers converteren." },
-  { title: "Website Redesign", description: "Je bestaande website moderniseren met een frisse look, betere structuur en hogere conversie." },
-  { title: "UX Improvement", description: "Gebruikerservaring optimaliseren voor betere resultaten en hogere klanttevredenheid." },
-  { title: "Landing Pages", description: "Gerichte landingspagina's die bezoekers omzetten in leads en klanten." },
-  { title: "Build Support", description: "Ondersteuning bij de technische realisatie van jouw website in Webflow, WordPress of code." },
+  { title: "Website Design", description: "Volledig op maat ontworpen websites die jouw bedrijf versterken en bezoekers begeleiden naar actie." },
+  { title: "Website Development", description: "Technische realisatie van snelle, schaalbare websites in WordPress, Webflow, Framer of maatwerk code." },
+  { title: "Website Redesign", description: "Bestaande websites moderniseren met een sterkere structuur, betere gebruikerservaring en hogere conversie." },
+  { title: "UX & Conversion", description: "Structuur, navigatie en gebruikerservaring optimaliseren zodat bezoekers sneller vinden wat ze zoeken en eerder contact opnemen." },
+  { title: "Branding & Visual Content", description: "Het ontwikkelen van een sterke visuele identiteit en het creëren van fotografie of video die zorgt voor herkenbaarheid en een consistente uitstraling online." },
 ];
 
 const Services = () => {
