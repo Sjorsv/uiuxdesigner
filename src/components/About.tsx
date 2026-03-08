@@ -30,7 +30,7 @@ const About = () => {
                     <img
                       src={portrait}
                       alt="Portrait"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover scale-125"
                     />
                   </motion.div>
                 )}
