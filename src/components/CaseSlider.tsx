@@ -43,6 +43,10 @@ const CaseSlider = () => {
   const isDraggingRef = useRef(false);
   const dragStartXRef = useRef(0);
   const dragStartScrollLeftRef = useRef(0);
+  const velocityRef = useRef(0);
+  const lastXRef = useRef(0);
+  const lastTimeRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
@@ -54,13 +58,34 @@ const CaseSlider = () => {
     }
   };
 
+  const startMomentum = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const animate = () => {
+      if (Math.abs(velocityRef.current) < 0.5) {
+        velocityRef.current = 0;
+        return;
+      }
+      el.scrollLeft += velocityRef.current;
+      velocityRef.current *= 0.95; // friction
+      rafRef.current = requestAnimationFrame(animate);
+    };
+    rafRef.current = requestAnimationFrame(animate);
+  };
+
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
     const el = scrollRef.current;
     if (!el) return;
 
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    velocityRef.current = 0;
+
     isDraggingRef.current = true;
     dragStartXRef.current = event.clientX;
     dragStartScrollLeftRef.current = el.scrollLeft;
+    lastXRef.current = event.clientX;
+    lastTimeRef.current = Date.now();
     el.setPointerCapture(event.pointerId);
   };
 
@@ -68,12 +93,25 @@ const CaseSlider = () => {
     const el = scrollRef.current;
     if (!el || !isDraggingRef.current) return;
 
+    const now = Date.now();
+    const dt = now - lastTimeRef.current;
+    const dx = event.clientX - lastXRef.current;
+
+    if (dt > 0) {
+      velocityRef.current = -dx / dt * 16; // normalize to ~16ms frame
+    }
+
+    lastXRef.current = event.clientX;
+    lastTimeRef.current = now;
+
     const deltaX = event.clientX - dragStartXRef.current;
     el.scrollLeft = dragStartScrollLeftRef.current - deltaX;
   };
 
   const stopDragging = () => {
+    if (!isDraggingRef.current) return;
     isDraggingRef.current = false;
+    startMomentum();
   };
 
   return (
