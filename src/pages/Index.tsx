@@ -21,6 +21,7 @@ const Index = () => {
       <Process />
       <About />
       <ContactForm />
+      <FAQ />
       <FinalCTA />
       <Footer />
     </div>
