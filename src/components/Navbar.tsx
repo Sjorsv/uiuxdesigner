@@ -14,7 +14,6 @@ const Navbar = () => {
   const navItems = [
     { label: "Werk", href: "#portfolio" },
     { label: "Diensten", href: "#services" },
-    { label: "Proces", href: "#process" },
     { label: "Over", href: "#about" },
   ];
 
