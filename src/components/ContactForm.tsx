@@ -62,7 +62,7 @@ const ContactForm = () => {
             <span className="section-number">07</span>
             <span className="section-label ml-4">Contact</span>
             <h2 className="heading-lg mt-4 mb-8">
-              Laten we<br />samenwerken.
+              Tijd voor een<br />nieuwe website?
             </h2>
             <p className="body-md max-w-md mb-10">
               Vertel over je project en we plannen een vrijblijvend gesprek in om de mogelijkheden te bespreken.
