@@ -23,7 +23,7 @@ const Comparison = () => {
             <div className="relative">
               <h3 className="font-display font-bold text-xl text-muted-foreground mb-10">Traditioneel agency</h3>
               <ul className="space-y-6">
-                {["Dure tarieven", "Lange doorlooptijden", "Meerdere contactpersonen", "Rigide processen"].map((item) => (
+                {["Dure tarieven", "Lange doorlooptijden", "Meerdere contactpersonen", "Veel overleg"].map((item) => (
                   <li key={item} className="flex items-center gap-4 text-muted-foreground font-body text-base">
                     <span className="w-6 h-6 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
                       <X className="w-3.5 h-3.5" />
