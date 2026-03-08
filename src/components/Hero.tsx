@@ -21,7 +21,7 @@ const Hero = () => {
         >
           <p className="section-label mb-6">UIUXDESIGNER.NL</p>
 
-          <h1 className="heading-xl mb-8 max-w-4xl bg-gradient-to-b from-foreground via-foreground to-foreground/40 bg-clip-text text-transparent">
+          <h1 className="heading-xl mb-8 max-w-4xl">
             Websites voor <span className="text-brand">groeiende</span> bedrijven.
           </h1>
 
