@@ -21,24 +21,38 @@ const Hero = () => {
         >
           <p className="section-label mb-6">UIUXDESIGNER.NL</p>
 
-          {/* CTA badge - above heading on mobile */}
+          {/* CTA badge - above heading on mobile only */}
           <motion.a
             href="#contact"
-            className="mb-6 md:mb-0 md:absolute md:-top-4 md:-right-20 lg:-right-24 w-28 h-28 md:w-32 md:h-32 rounded-full bg-brand flex flex-col items-center justify-center text-brand-foreground shadow-[0_4px_30px_hsl(var(--brand)/0.3)] cursor-pointer no-underline relative z-10"
+            className="md:hidden mb-6 w-28 h-28 rounded-full bg-brand flex flex-col items-center justify-center text-brand-foreground shadow-[0_4px_30px_hsl(var(--brand)/0.3)] cursor-pointer no-underline"
             initial={{ scale: 0, rotate: -20 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.6, delay: 0.5, type: "spring", stiffness: 200 }}
             whileHover={{ scale: 1.1, rotate: 5 }}
           >
-            <span className="font-body text-[9px] md:text-[10px] uppercase tracking-wider leading-tight text-center px-3">Vraag gratis</span>
-            <span className="font-display font-bold text-sm md:text-base leading-tight text-center">ontwerp</span>
-            <span className="font-body text-[9px] md:text-[10px] uppercase tracking-wider leading-tight text-center">aan →</span>
+            <span className="font-body text-[9px] uppercase tracking-wider leading-tight text-center px-3">Vraag gratis</span>
+            <span className="font-display font-bold text-sm leading-tight text-center">ontwerp</span>
+            <span className="font-body text-[9px] uppercase tracking-wider leading-tight text-center">aan →</span>
           </motion.a>
 
           <div className="relative">
             <h1 className="heading-xl mb-8 max-w-4xl">
               Websites voor <span className="text-brand">groeiende</span> bedrijven.
             </h1>
+
+            {/* CTA badge - original position on desktop */}
+            <motion.a
+              href="#contact"
+              className="hidden md:flex absolute -top-4 -right-20 lg:-right-24 w-32 h-32 rounded-full bg-brand flex-col items-center justify-center text-brand-foreground shadow-[0_4px_30px_hsl(var(--brand)/0.3)] cursor-pointer no-underline"
+              initial={{ scale: 0, rotate: -20 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ duration: 0.6, delay: 0.5, type: "spring", stiffness: 200 }}
+              whileHover={{ scale: 1.1, rotate: 5 }}
+            >
+              <span className="font-body text-[10px] uppercase tracking-wider leading-tight text-center px-3">Vraag gratis</span>
+              <span className="font-display font-bold text-base leading-tight text-center">ontwerp</span>
+              <span className="font-body text-[10px] uppercase tracking-wider leading-tight text-center">aan →</span>
+            </motion.a>
           </div>
 
           <p className="body-lg mb-12 max-w-md">
