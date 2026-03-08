@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import useEmblaCarousel from "embla-carousel-react";
 import CursorBadge from "./CursorBadge";
 import caseGmt from "@/assets/case-gmt.png";
@@ -18,6 +19,7 @@ const cases = [
     description: "Website redesign voor GMT Equipment, fabrikant van innovatieve zaag- en grijpsystemen. De focus lag op structuur, conversie en het versterken van hun technische merkidentiteit.",
     industry: "Industrial",
     image: caseGmt,
+    slug: "/case/gmt-equipment",
   },
   {
     title: "MaxLED",
@@ -70,7 +72,9 @@ const cases = [
 ];
 
 const CaseSlider = () => {
+  const navigate = useNavigate();
   const [hovering, setHovering] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     dragFree: true,
@@ -92,9 +96,17 @@ const CaseSlider = () => {
     emblaApi.on("select", updateNavigationState);
     emblaApi.on("reInit", updateNavigationState);
 
+    const onPointerDown = () => setIsDragging(false);
+    const onPointerMove = () => setIsDragging(true);
+
+    emblaApi.on("pointerDown", onPointerDown);
+    emblaApi.on("pointerMove", onPointerMove);
+
     return () => {
       emblaApi.off("select", updateNavigationState);
       emblaApi.off("reInit", updateNavigationState);
+      emblaApi.off("pointerDown", onPointerDown);
+      emblaApi.off("pointerMove", onPointerMove);
     };
   }, [emblaApi, updateNavigationState]);
 
@@ -125,13 +137,18 @@ const CaseSlider = () => {
           {cases.map((project, index) => (
             <motion.div
               key={project.title}
-              className="flex-[0_0_85vw] sm:flex-[0_0_70vw] md:flex-[0_0_55vw] lg:flex-[0_0_45vw] group cursor-none"
+              className={`flex-[0_0_85vw] sm:flex-[0_0_70vw] md:flex-[0_0_55vw] lg:flex-[0_0_45vw] group cursor-none ${(project as any).slug ? "" : ""}`}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               onMouseEnter={() => setHovering(true)}
               onMouseLeave={() => setHovering(false)}
+              onClick={() => {
+                if (!isDragging && (project as any).slug) {
+                  navigate((project as any).slug);
+                }
+              }}
             >
               <div className="bg-surface rounded-sm overflow-hidden mb-6 relative">
                 <div className="overflow-hidden">
