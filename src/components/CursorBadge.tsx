@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 
 const CursorBadge = ({ text, active }: { text: string; active: boolean }) => {
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
-  const springX = useSpring(cursorX, { stiffness: 300, damping: 25 });
-  const springY = useSpring(cursorY, { stiffness: 300, damping: 25 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -21,7 +19,7 @@ const CursorBadge = ({ text, active }: { text: string; active: boolean }) => {
       {active && (
         <motion.div
           className="fixed top-0 left-0 z-[9999] pointer-events-none"
-          style={{ x: springX, y: springY }}
+          style={{ x: cursorX, y: cursorY }}
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
