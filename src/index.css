@@ -118,7 +118,7 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-8 py-4 bg-foreground text-background font-body font-medium text-sm tracking-wide uppercase hover:bg-secondary transition-colors duration-300;
+    @apply inline-flex items-center gap-2 px-8 py-4 bg-brand text-brand-foreground font-body font-medium text-sm tracking-wide uppercase hover:bg-brand/80 transition-colors duration-300;
   }
 
   .btn-outline {
