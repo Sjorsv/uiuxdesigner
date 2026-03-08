@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
+import CursorBadge from "./CursorBadge";
 import caseGmt from "@/assets/case-gmt.png";
 import caseMaxled from "@/assets/case-maxled.png";
 import caseBouwmeester from "@/assets/case-bouwmeester.png";
@@ -69,6 +70,7 @@ const cases = [
 ];
 
 const CaseSlider = () => {
+  const [hovering, setHovering] = useState(false);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     dragFree: true,
@@ -104,6 +106,7 @@ const CaseSlider = () => {
 
   return (
     <section className="py-32 relative" id="cases">
+      <CursorBadge text={"Bekijk\ncase"} active={hovering} />
       <div className="swiss-container mb-12">
         <div className="flex items-end justify-between">
           <div>
@@ -122,11 +125,13 @@ const CaseSlider = () => {
           {cases.map((project, index) => (
             <motion.div
               key={project.title}
-              className="flex-[0_0_85vw] sm:flex-[0_0_70vw] md:flex-[0_0_55vw] lg:flex-[0_0_45vw] group"
+              className="flex-[0_0_85vw] sm:flex-[0_0_70vw] md:flex-[0_0_55vw] lg:flex-[0_0_45vw] group cursor-none"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              onMouseEnter={() => setHovering(true)}
+              onMouseLeave={() => setHovering(false)}
             >
               <div className="bg-surface rounded-sm overflow-hidden mb-6 relative">
                 <div className="overflow-hidden">
@@ -136,11 +141,6 @@ const CaseSlider = () => {
                     draggable={false}
                     className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
                   />
-                </div>
-                <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center pointer-events-none">
-                  <span className="bg-brand text-brand-foreground font-body font-medium text-sm uppercase tracking-wide px-6 py-3 rounded-full shadow-lg scale-90 group-hover:scale-100 transition-transform duration-500">
-                    Bekijk case
-                  </span>
                 </div>
               </div>
               <div className="flex items-start justify-between gap-4">
