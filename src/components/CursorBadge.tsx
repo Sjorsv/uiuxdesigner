@@ -19,7 +19,7 @@ const CursorBadge = ({ text, active }: { text: string; active: boolean }) => {
       {active && (
         <motion.div
           className="fixed top-0 left-0 z-[9999] pointer-events-none"
-          style={{ x: springX, y: springY }}
+          style={{ x: cursorX, y: cursorY }}
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0, opacity: 0 }}
