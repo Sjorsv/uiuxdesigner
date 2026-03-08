@@ -82,11 +82,11 @@
 
 @layer components {
   .section-label {
-    @apply text-xs font-body uppercase tracking-[0.3em] text-muted-foreground;
+    @apply text-xs font-body uppercase tracking-[0.3em] text-brand;
   }
 
   .section-number {
-    @apply text-xs font-body font-medium text-muted-foreground tabular-nums;
+    @apply text-xs font-body font-medium text-brand tabular-nums;
   }
 
   .grid-line {
