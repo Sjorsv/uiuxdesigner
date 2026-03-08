@@ -6,6 +6,7 @@ import Comparison from "@/components/Comparison";
 import Process from "@/components/Process";
 import About from "@/components/About";
 import ContactForm from "@/components/ContactForm";
+import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
@@ -20,6 +21,7 @@ const Index = () => {
       <Process />
       <About />
       <ContactForm />
+      <FAQ />
       <FinalCTA />
       <Footer />
     </div>
