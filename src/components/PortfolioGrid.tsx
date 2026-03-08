@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import caseGmt from "@/assets/case-gmt.png";
 import caseMaxled from "@/assets/case-maxled.png";
 import caseBouwmeester from "@/assets/case-bouwmeester.png";
