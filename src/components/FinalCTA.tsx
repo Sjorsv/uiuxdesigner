@@ -15,10 +15,10 @@ const FinalCTA = () => {
             LET'S BUILD YOUR <span className="text-brand">NEXT</span> WEBSITE.
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="mailto:hello@uiuxdesigner.nl" className="btn-primary">
+            <a href="mailto:uiuxdesignernl@gmail.com" className="btn-primary">
               Start een project
             </a>
-            <a href="mailto:hello@uiuxdesigner.nl" className="btn-outline">
+            <a href="mailto:uiuxdesignernl@gmail.com" className="btn-outline">
               Plan een call
             </a>
           </div>
