@@ -10,7 +10,7 @@ const services = [
 
 const Services = () => {
   return (
-    <section className="py-32 border-t border-border" id="services">
+    <section className="py-32 border-t border-border s-curve-shadow" id="services">
       <div className="swiss-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           <div className="lg:col-span-4">

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 s-curve-shadow">
       {/* Subtle grid lines */}
       <div className="absolute inset-0 swiss-container pointer-events-none">
         <div className="h-full grid grid-cols-12 gap-0">
