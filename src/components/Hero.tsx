@@ -84,16 +84,20 @@ const Hero = () => {
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
           >
-            <img
-              src={portfolioCollage}
-              alt="Portfolio overzicht van website projecten"
-              className="block h-auto w-[100vw] min-w-[1200px] shrink-0 -mr-2"
-            />
-            <img
-              src={portfolioCollage}
-              alt=""
-              className="block h-auto w-[100vw] min-w-[1200px] shrink-0 -mr-2"
-            />
+            <div className="shrink-0 pr-[65px]">
+              <img
+                src={portfolioCollage}
+                alt="Portfolio overzicht van website projecten"
+                className="block h-auto w-[100vw] min-w-[1200px]"
+              />
+            </div>
+            <div className="shrink-0 pr-[65px]" aria-hidden="true">
+              <img
+                src={portfolioCollage}
+                alt=""
+                className="block h-auto w-[100vw] min-w-[1200px]"
+              />
+            </div>
           </motion.div>
         </div>
       </motion.div>
