@@ -142,7 +142,7 @@ const CaseSlider = () => {
                 }
               }}
             >
-              <div className="bg-surface rounded-sm overflow-hidden mb-6 relative">
+              <div className="bg-gradient-to-br from-surface to-muted/30 rounded-sm overflow-hidden mb-6 relative">
                 <div className="overflow-hidden">
                   <img
                     src={project.image}
