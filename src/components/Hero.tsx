@@ -6,7 +6,7 @@ const Hero = () => {
   const collageY = useTransform(scrollY, [0, 600], [0, -80]);
 
   return (
-    <section className="relative overflow-hidden pt-28">
+    <section className="relative overflow-hidden pt-36">
       <div className="swiss-container w-full relative z-10 flex flex-col items-center text-center min-h-[60vh] justify-center">
         <motion.div
           className="flex flex-col items-center text-center relative"
