@@ -25,7 +25,7 @@ const FloatingImage = ({ img }: { img: typeof floatingImages[0] }) => {
       className={`absolute ${img.size} rounded-xl overflow-hidden`}
       style={{ left: img.x, top: img.y, rotate: img.rotate, y }}
       initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 0.15, scale: 1 }}
+      animate={{ opacity: 0.22, scale: 1 }}
       transition={{ duration: 1.2, ease: "easeOut" }}
     >
       <img
