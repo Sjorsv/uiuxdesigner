@@ -3,15 +3,6 @@ import { motion } from "framer-motion";
 const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Subtle grid lines */}
-      <div className="absolute inset-0 swiss-container pointer-events-none">
-        <div className="h-full grid grid-cols-12 gap-0">
-          {Array.from({ length: 13 }).map((_, i) => (
-            <div key={i} className={`grid-line ${i === 12 ? "border-r border-border/30" : ""}`} />
-          ))}
-        </div>
-      </div>
-
       <div className="swiss-container w-full relative z-10">
         <motion.div
           className="flex flex-col items-center text-center relative"
