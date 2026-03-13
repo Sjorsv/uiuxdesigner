@@ -78,7 +78,7 @@ const Hero = () => {
             <div className="absolute left-1/2 top-0 h-full w-px bg-foreground/20 -translate-x-1/2" />
           </div>
         </motion.div>
-      
+      </div>
 
       <div className="swiss-container w-full relative z-10">
         <motion.div
