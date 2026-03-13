@@ -4,7 +4,7 @@ import { useRef, useCallback, useEffect } from "react";
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const lastPos = useRef<{ x: number; y: number } | null>(null);
-  const segments = useRef<{ x1: number; y1: number; x2: number; y2: number; time: number }[]>([]);
+  const points = useRef<{ x: number; y: number; time: number }[]>([]);
   const rafRef = useRef<number>(0);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
@@ -13,16 +13,7 @@ const Hero = () => {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-
-    if (lastPos.current) {
-      segments.current.push({
-        x1: lastPos.current.x,
-        y1: lastPos.current.y,
-        x2: x,
-        y2: y,
-        time: Date.now(),
-      });
-    }
+    points.current.push({ x, y, time: Date.now() });
     lastPos.current = { x, y };
   }, []);
 
@@ -42,18 +33,51 @@ const Hero = () => {
       const now = Date.now();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      segments.current = segments.current.filter((s) => now - s.time < LIFETIME);
+      // Remove expired points
+      points.current = points.current.filter((p) => now - p.time < LIFETIME);
 
-      for (const s of segments.current) {
-        const age = now - s.time;
-        const opacity = Math.max(0, 1 - age / LIFETIME) * 0.1;
-        ctx.beginPath();
-        ctx.moveTo(s.x1, s.y1);
-        ctx.lineTo(s.x2, s.y2);
-        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
-        ctx.lineWidth = 1.5;
-        ctx.lineCap = "round";
-        ctx.stroke();
+      if (points.current.length < 2) {
+        rafRef.current = requestAnimationFrame(draw);
+        return;
+      }
+
+      // Group points into strokes (gaps > 50ms = new stroke from mouseLeave/re-enter)
+      const strokes: { x: number; y: number; time: number }[][] = [];
+      let currentStroke: { x: number; y: number; time: number }[] = [points.current[0]];
+
+      for (let i = 1; i < points.current.length; i++) {
+        if (points.current[i].time - points.current[i - 1].time > 50) {
+          if (currentStroke.length > 1) strokes.push(currentStroke);
+          currentStroke = [];
+        }
+        currentStroke.push(points.current[i]);
+      }
+      if (currentStroke.length > 1) strokes.push(currentStroke);
+
+      // Draw each stroke as a smooth quadratic curve
+      for (const stroke of strokes) {
+        for (let i = 1; i < stroke.length; i++) {
+          const p0 = stroke[i - 1];
+          const p1 = stroke[i];
+          const age = now - p1.time;
+          const opacity = Math.max(0, 1 - age / LIFETIME) * 0.12;
+
+          const mx = (p0.x + p1.x) / 2;
+          const my = (p0.y + p1.y) / 2;
+
+          ctx.beginPath();
+          if (i === 1) {
+            ctx.moveTo(p0.x, p0.y);
+          } else {
+            ctx.moveTo((stroke[i - 2].x + p0.x) / 2, (stroke[i - 2].y + p0.y) / 2);
+          }
+          ctx.quadraticCurveTo(p0.x, p0.y, mx, my);
+          ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+          ctx.lineWidth = 2;
+          ctx.lineCap = "round";
+          ctx.lineJoin = "round";
+          ctx.stroke();
+        }
       }
 
       rafRef.current = requestAnimationFrame(draw);
