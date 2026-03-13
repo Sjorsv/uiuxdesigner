@@ -1,27 +1,8 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Hero = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-
-  // Different speeds for parallax depth
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -220]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, -300]);
-  const rotate1 = useTransform(scrollYProgress, [0, 1], [0, 45]);
-  const rotate2 = useTransform(scrollYProgress, [0, 1], [0, -30]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
   return (
-    <section
-      ref={sectionRef}
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
-    >
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       {/* Subtle grid lines */}
       <div className="absolute inset-0 swiss-container pointer-events-none">
         <div className="h-full grid grid-cols-12 gap-0">
@@ -31,62 +12,12 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Parallax floating shapes */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Small square — top left */}
-        <motion.div
-          style={{ y: y3, rotate: rotate1, opacity }}
-          className="absolute top-[12%] left-[10%] w-6 h-6 border border-foreground/15 rounded-sm"
-        />
-        {/* Cross — top right */}
-        <motion.div
-          style={{ y: y4, rotate: rotate2, opacity }}
-          className="absolute top-[18%] right-[12%]"
-        >
-          <div className="relative w-5 h-5">
-            <div className="absolute top-1/2 left-0 w-full h-px bg-foreground/20 -translate-y-1/2" />
-            <div className="absolute left-1/2 top-0 h-full w-px bg-foreground/20 -translate-x-1/2" />
-          </div>
-        </motion.div>
-        {/* Medium square — left center */}
-        <motion.div
-          style={{ y: y2, rotate: rotate2, opacity }}
-          className="absolute top-[40%] left-[6%] w-10 h-10 border border-foreground/10 rounded-sm"
-        />
-        {/* Square — bottom right */}
-        <motion.div
-          style={{ y: y2, rotate: rotate1, opacity }}
-          className="absolute bottom-[30%] right-[18%] w-8 h-8 border border-foreground/15 rounded-sm"
-        />
-        {/* Cross — bottom left */}
-        <motion.div
-          style={{ y: y1, opacity }}
-          className="absolute bottom-[22%] left-[15%]"
-        >
-          <div className="relative w-7 h-7">
-            <div className="absolute top-1/2 left-0 w-full h-px bg-foreground/15 -translate-y-1/2" />
-            <div className="absolute left-1/2 top-0 h-full w-px bg-foreground/15 -translate-x-1/2" />
-          </div>
-        </motion.div>
-        {/* Large cross — right */}
-        <motion.div
-          style={{ y: y4, rotate: rotate2, opacity }}
-          className="absolute top-[60%] right-[6%]"
-        >
-          <div className="relative w-10 h-10">
-            <div className="absolute top-1/2 left-0 w-full h-px bg-foreground/20 -translate-y-1/2" />
-            <div className="absolute left-1/2 top-0 h-full w-px bg-foreground/20 -translate-x-1/2" />
-          </div>
-        </motion.div>
-      </div>
-
       <div className="swiss-container w-full relative z-10">
         <motion.div
           className="flex flex-col items-center text-center relative"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          style={{ y: y1 }}
         >
           <p className="section-label mb-6">UIUXDESIGNER.NL</p>
 
