@@ -64,7 +64,7 @@ const Hero = () => {
             </a>
           </div>
 
-          <p className="text-xs text-muted-foreground tracking-wide">
+          <p className="text-sm text-muted-foreground tracking-wide mt-2">
             Agency kwaliteit, zonder agency prijs
           </p>
         </motion.div>
