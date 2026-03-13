@@ -1,53 +1,13 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import caseBatterij from "@/assets/case-batterij.png";
-import caseBiodiversity from "@/assets/case-biodiversity.png";
-import caseGmt from "@/assets/case-gmt.png";
-import caseJawel from "@/assets/case-jawel.png";
-import caseMaxled from "@/assets/case-maxled.png";
-import caseTheoriedoen from "@/assets/case-theoriedoen.png";
-
-const floatingImages = [
-  { src: caseMaxled, x: "6%", y: "28%", size: "w-52", rotate: 0, scrollSpeed: 0.3 },
-  { src: caseBiodiversity, x: "4%", y: "54%", size: "w-52", rotate: 0, scrollSpeed: 0.2 },
-  { src: caseJawel, x: "82%", y: "50%", size: "w-52", rotate: 0, scrollSpeed: 0.4 },
-  { src: caseGmt, x: "15%", y: "78%", size: "w-52", rotate: 0, scrollSpeed: 0.15 },
-  { src: caseTheoriedoen, x: "72%", y: "76%", size: "w-52", rotate: 0, scrollSpeed: 0.35 },
-];
-
-const FloatingImage = ({ img }: { img: typeof floatingImages[0] }) => {
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 800], [0, -120 * img.scrollSpeed]);
-
-  return (
-    <motion.div
-      className={`absolute ${img.size} rounded-xl overflow-hidden`}
-      style={{ left: img.x, top: img.y, rotate: img.rotate, y }}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 0.9, scale: 1 }}
-      transition={{ duration: 1.2, ease: "easeOut" }}
-    >
-      <img
-        src={img.src}
-        alt=""
-        className="w-full h-auto object-cover"
-        loading="lazy"
-      />
-    </motion.div>
-  );
-};
+import portfolioCollage from "@/assets/portfolio-collage.png";
 
 const Hero = () => {
-  return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Floating project screenshots */}
-      <div className="absolute inset-0 pointer-events-none z-0 hidden md:block">
-        {floatingImages.map((img, i) => (
-          <FloatingImage key={i} img={img} />
-        ))}
-      </div>
+  const { scrollY } = useScroll();
+  const collageY = useTransform(scrollY, [0, 600], [0, -80]);
 
-      <div className="swiss-container w-full relative z-10">
+  return (
+    <section className="relative overflow-hidden pt-20">
+      <div className="swiss-container w-full relative z-10 flex flex-col items-center text-center min-h-[60vh] justify-center">
         <motion.div
           className="flex flex-col items-center text-center relative"
           initial={{ opacity: 0, y: 30 }}
@@ -109,6 +69,23 @@ const Hero = () => {
           </p>
         </motion.div>
       </div>
+
+      {/* Portfolio collage flowing down */}
+      <motion.div
+        className="relative z-0 w-full flex justify-center -mt-4"
+        style={{ y: collageY }}
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+      >
+        <div className="w-full max-w-5xl px-4 [mask-image:linear-gradient(to_bottom,black_50%,transparent_100%)]">
+          <img
+            src={portfolioCollage}
+            alt="Portfolio overzicht van website projecten"
+            className="w-full h-auto"
+          />
+        </div>
+      </motion.div>
     </section>
   );
 };
