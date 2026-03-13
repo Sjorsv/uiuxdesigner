@@ -1,8 +1,75 @@
 import { motion } from "framer-motion";
+import { useRef, useCallback, useEffect } from "react";
 
 const Hero = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const lastPos = useRef<{ x: number; y: number } | null>(null);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    if (lastPos.current) {
+      ctx.beginPath();
+      ctx.moveTo(lastPos.current.x, lastPos.current.y);
+      ctx.lineTo(x, y);
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+      ctx.lineWidth = 1.5;
+      ctx.lineCap = "round";
+      ctx.stroke();
+    }
+    lastPos.current = { x, y };
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    lastPos.current = null;
+  }, []);
+
+  // Fade out canvas over time
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const fade = () => {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.02)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    };
+    const interval = setInterval(fade, 80);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Resize canvas
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const resize = () => {
+      const parent = canvas.parentElement;
+      if (!parent) return;
+      canvas.width = parent.clientWidth;
+      canvas.height = parent.clientHeight;
+    };
+    resize();
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
+  }, []);
+
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <section
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 pointer-events-none z-0"
+      />
       <div className="swiss-container w-full relative z-10">
         <motion.div
           className="flex flex-col items-center text-center relative"
