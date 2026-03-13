@@ -45,7 +45,7 @@ const CaseGmt = () => {
               <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 leading-[1.1]">
                 GMT Equipment
               </h1>
-              <p className="body-lg mb-8 max-w-lg">
+              <p className="body-md mb-8 max-w-lg">
                 Website redesign voor GMT Equipment, fabrikant van innovatieve zaag- en grijpsystemen. De focus lag op structuur, conversie en het versterken van hun technische merkidentiteit.
               </p>
               <a
