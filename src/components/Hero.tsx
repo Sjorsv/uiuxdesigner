@@ -1,8 +1,27 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const Hero = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Different speeds for parallax depth
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -220]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, -300]);
+  const rotate1 = useTransform(scrollYProgress, [0, 1], [0, 45]);
+  const rotate2 = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <section
+      ref={sectionRef}
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+    >
       {/* Subtle grid lines */}
       <div className="absolute inset-0 swiss-container pointer-events-none">
         <div className="h-full grid grid-cols-12 gap-0">
@@ -12,12 +31,61 @@ const Hero = () => {
         </div>
       </div>
 
+      {/* Parallax floating shapes */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Large ring — slow */}
+        <motion.div
+          style={{ y: y3, opacity }}
+          className="absolute -top-16 -left-24 w-72 h-72 rounded-full border border-brand/10"
+        />
+        {/* Small filled circle — fast */}
+        <motion.div
+          style={{ y: y4, rotate: rotate1, opacity }}
+          className="absolute top-[18%] right-[12%] w-4 h-4 rounded-full bg-brand/20"
+        />
+        {/* Diagonal line — medium */}
+        <motion.div
+          style={{ y: y2, rotate: rotate2, opacity }}
+          className="absolute top-[35%] left-[8%] w-px h-32 bg-brand/15 origin-center"
+        />
+        {/* Square — medium-fast */}
+        <motion.div
+          style={{ y: y2, rotate: rotate1, opacity }}
+          className="absolute bottom-[30%] right-[18%] w-8 h-8 border border-border/40 rounded-sm"
+        />
+        {/* Dots cluster — slow */}
+        <motion.div
+          style={{ y: y1, opacity }}
+          className="absolute bottom-[22%] left-[15%] flex gap-2"
+        >
+          <div className="w-1.5 h-1.5 rounded-full bg-brand/25" />
+          <div className="w-1.5 h-1.5 rounded-full bg-brand/15" />
+          <div className="w-1.5 h-1.5 rounded-full bg-brand/10" />
+        </motion.div>
+        {/* Large cross — very fast */}
+        <motion.div
+          style={{ y: y4, rotate: rotate2, opacity }}
+          className="absolute top-[60%] right-[6%]"
+        >
+          <div className="relative w-10 h-10">
+            <div className="absolute top-1/2 left-0 w-full h-px bg-border/30 -translate-y-1/2" />
+            <div className="absolute left-1/2 top-0 h-full w-px bg-border/30 -translate-x-1/2" />
+          </div>
+        </motion.div>
+        {/* Arc — medium */}
+        <motion.div
+          style={{ y: y2, opacity }}
+          className="absolute -bottom-8 right-[35%] w-40 h-40 rounded-full border-t border-brand/10"
+        />
+      </div>
+
       <div className="swiss-container w-full relative z-10">
         <motion.div
           className="flex flex-col items-center text-center relative"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          style={{ y: y1 }}
         >
           <p className="section-label mb-6">UIUXDESIGNER.NL</p>
 
