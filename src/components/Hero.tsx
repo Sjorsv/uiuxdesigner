@@ -7,7 +7,7 @@ const Hero = () => {
 
   return (
     <section className="relative overflow-hidden pt-20">
-      <div className="swiss-container w-full relative z-10 flex flex-col items-center text-center min-h-[60vh] justify-center">
+      <div className="swiss-container w-full relative z-10 flex flex-col items-center text-center min-h-[70vh] justify-center">
         <motion.div
           className="flex flex-col items-center text-center relative"
           initial={{ opacity: 0, y: 30 }}
