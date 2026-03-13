@@ -17,7 +17,7 @@ const Services = () => {
           <div className="lg:col-span-4">
             <span className="section-number">03</span>
             <span className="section-label ml-4">Diensten</span>
-            <h2 className="heading-lg mt-4 mb-8">Wat ik <span className="text-brand">doe</span></h2>
+            <h2 className="heading-lg mt-4 mb-8">Expertises</h2>
             <p className="body-md max-w-sm">
               UIUXDESIGNER.NL helpt bedrijven moderne websites te creëren die helder communiceren en bezoekers omzetten in klanten.
             </p>
