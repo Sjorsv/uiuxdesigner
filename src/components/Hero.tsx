@@ -18,7 +18,7 @@ const floatingImages = [
 
 const FloatingImage = ({ img }: { img: typeof floatingImages[0] }) => {
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 800], [0, -120 * img.scrollSpeed]);
+  const y = useTransform(scrollY, [0, 800], [0, -200 * img.scrollSpeed]);
 
   return (
     <motion.div
