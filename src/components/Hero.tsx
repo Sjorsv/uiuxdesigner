@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import caseBatterij from "@/assets/case-batterij.png";
 import caseBiodiversity from "@/assets/case-biodiversity.png";
 import caseGmt from "@/assets/case-gmt.png";
@@ -7,46 +8,43 @@ import caseMaxled from "@/assets/case-maxled.png";
 import caseTheoriedoen from "@/assets/case-theoriedoen.png";
 
 const floatingImages = [
-  { src: caseBatterij, x: "8%", y: "15%", size: "w-28", delay: 0, duration: 18 },
-  { src: caseGmt, x: "82%", y: "20%", size: "w-32", delay: 0.3, duration: 22 },
-  { src: caseBiodiversity, x: "5%", y: "65%", size: "w-24", delay: 0.6, duration: 20 },
-  { src: caseJawel, x: "88%", y: "70%", size: "w-26", delay: 0.2, duration: 19 },
-  { src: caseMaxled, x: "18%", y: "80%", size: "w-20", delay: 0.5, duration: 21 },
-  { src: caseTheoriedoen, x: "78%", y: "85%", size: "w-24", delay: 0.4, duration: 17 },
+  { src: caseBatterij, x: "3%", y: "10%", size: "w-44", rotate: -6, scrollSpeed: 0.3 },
+  { src: caseGmt, x: "75%", y: "8%", size: "w-52", rotate: 4, scrollSpeed: 0.5 },
+  { src: caseBiodiversity, x: "1%", y: "58%", size: "w-40", rotate: 3, scrollSpeed: 0.2 },
+  { src: caseJawel, x: "80%", y: "55%", size: "w-44", rotate: -5, scrollSpeed: 0.4 },
+  { src: caseMaxled, x: "12%", y: "82%", size: "w-36", rotate: 2, scrollSpeed: 0.15 },
+  { src: caseTheoriedoen, x: "70%", y: "80%", size: "w-40", rotate: -3, scrollSpeed: 0.35 },
 ];
+
+const FloatingImage = ({ img }: { img: typeof floatingImages[0] }) => {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 800], [0, -120 * img.scrollSpeed]);
+
+  return (
+    <motion.div
+      className={`absolute ${img.size} rounded-xl overflow-hidden`}
+      style={{ left: img.x, top: img.y, rotate: img.rotate, y }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 0.15, scale: 1 }}
+      transition={{ duration: 1.2, ease: "easeOut" }}
+    >
+      <img
+        src={img.src}
+        alt=""
+        className="w-full h-auto object-cover blur-[1px]"
+        loading="lazy"
+      />
+    </motion.div>
+  );
+};
 
 const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       {/* Floating project screenshots */}
-      <div className="absolute inset-0 pointer-events-none z-0">
+      <div className="absolute inset-0 pointer-events-none z-0 hidden md:block">
         {floatingImages.map((img, i) => (
-          <motion.div
-            key={i}
-            className={`absolute ${img.size} rounded-lg overflow-hidden shadow-lg opacity-[0.07]`}
-            style={{ left: img.x, top: img.y }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{
-              opacity: 0.07,
-              y: [0, -15, 0],
-            }}
-            transition={{
-              opacity: { duration: 1, delay: img.delay },
-              y: {
-                duration: img.duration,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: img.delay,
-              },
-            }}
-          >
-            <img
-              src={img.src}
-              alt=""
-              className="w-full h-auto object-cover"
-              loading="lazy"
-            />
-          </motion.div>
+          <FloatingImage key={i} img={img} />
         ))}
       </div>
 
