@@ -1,9 +1,7 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import portfolioCollage from "@/assets/portfolio-collage.png";
 
 const Hero = () => {
-  const { scrollY } = useScroll();
-  const collageY = useTransform(scrollY, [0, 600], [0, -80]);
 
   return (
     <section className="relative overflow-hidden pt-36">
@@ -73,7 +71,6 @@ const Hero = () => {
       {/* Portfolio collage flowing down */}
       <motion.div
         className="relative z-0 w-full overflow-hidden mt-[106px]"
-        style={{ y: collageY }}
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
