@@ -72,18 +72,29 @@ const Hero = () => {
 
       {/* Portfolio collage flowing down */}
       <motion.div
-        className="relative z-0 w-full flex justify-center mt-20"
+        className="relative z-0 w-full overflow-hidden mt-32"
         style={{ y: collageY }}
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
       >
-        <div className="swiss-container [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
-          <img
-            src={portfolioCollage}
-            alt="Portfolio overzicht van website projecten"
-            className="w-full h-auto"
-          />
+        <div className="[mask-image:linear-gradient(to_bottom,black_40%,transparent_85%)]">
+          <motion.div
+            className="flex w-max gap-0"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          >
+            <img
+              src={portfolioCollage}
+              alt="Portfolio overzicht van website projecten"
+              className="h-auto w-[100vw] min-w-[1200px]"
+            />
+            <img
+              src={portfolioCollage}
+              alt=""
+              className="h-auto w-[100vw] min-w-[1200px]"
+            />
+          </motion.div>
         </div>
       </motion.div>
     </section>
