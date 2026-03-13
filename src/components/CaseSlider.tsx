@@ -107,7 +107,7 @@ const CaseSlider = () => {
   };
 
   return (
-    <section className="py-32 relative" id="cases">
+    <section className="pt-16 pb-32 relative" id="cases">
       <CursorBadge text={"Bekijk\ncase"} active={hovering} />
       <div className="swiss-container mb-12">
         <div className="flex items-end justify-between">
