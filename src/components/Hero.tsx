@@ -4,6 +4,8 @@ import { useRef, useCallback, useEffect } from "react";
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const lastPos = useRef<{ x: number; y: number } | null>(null);
+  const segments = useRef<{ x1: number; y1: number; x2: number; y2: number; time: number }[]>([]);
+  const rafRef = useRef<number>(0);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
     const canvas = canvasRef.current;
@@ -11,17 +13,15 @@ const Hero = () => {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
 
     if (lastPos.current) {
-      ctx.beginPath();
-      ctx.moveTo(lastPos.current.x, lastPos.current.y);
-      ctx.lineTo(x, y);
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
-      ctx.lineWidth = 1.5;
-      ctx.lineCap = "round";
-      ctx.stroke();
+      segments.current.push({
+        x1: lastPos.current.x,
+        y1: lastPos.current.y,
+        x2: x,
+        y2: y,
+        time: Date.now(),
+      });
     }
     lastPos.current = { x, y };
   }, []);
@@ -30,22 +30,39 @@ const Hero = () => {
     lastPos.current = null;
   }, []);
 
-  // Fade out canvas over time
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const fade = () => {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.02)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const LIFETIME = 2500;
+
+    const draw = () => {
+      const now = Date.now();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      segments.current = segments.current.filter((s) => now - s.time < LIFETIME);
+
+      for (const s of segments.current) {
+        const age = now - s.time;
+        const opacity = Math.max(0, 1 - age / LIFETIME) * 0.1;
+        ctx.beginPath();
+        ctx.moveTo(s.x1, s.y1);
+        ctx.lineTo(s.x2, s.y2);
+        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+        ctx.lineWidth = 1.5;
+        ctx.lineCap = "round";
+        ctx.stroke();
+      }
+
+      rafRef.current = requestAnimationFrame(draw);
     };
-    const interval = setInterval(fade, 80);
-    return () => clearInterval(interval);
+
+    rafRef.current = requestAnimationFrame(draw);
+    return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
-  // Resize canvas
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -79,7 +96,6 @@ const Hero = () => {
         >
           <p className="section-label mb-6">UIUXDESIGNER.NL</p>
 
-          {/* CTA badge - above heading on mobile only */}
           <motion.a
             href="#contact"
             className="md:hidden mb-6 w-28 h-28 rounded-full bg-brand flex flex-col items-center justify-center text-brand-foreground shadow-[0_4px_30px_hsl(var(--brand)/0.3)] cursor-pointer no-underline"
@@ -98,7 +114,6 @@ const Hero = () => {
               Websites voor <span className="text-brand">groeiende</span> bedrijven.
             </h1>
 
-            {/* CTA badge - original position on desktop */}
             <motion.a
               href="#contact"
               className="hidden md:flex absolute -top-4 -right-20 lg:-right-24 w-32 h-32 rounded-full bg-brand flex-col items-center justify-center text-brand-foreground shadow-[0_4px_30px_hsl(var(--brand)/0.3)] cursor-pointer no-underline"
