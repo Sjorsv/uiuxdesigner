@@ -71,7 +71,6 @@ const Hero = () => {
       {/* Portfolio collage flowing down */}
       <motion.div
         className="relative z-0 w-full overflow-hidden mt-[106px]"
-        style={{ y: collageY }}
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
