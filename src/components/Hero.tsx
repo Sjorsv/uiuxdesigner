@@ -9,23 +9,23 @@ import caseTheoriedoen from "@/assets/case-theoriedoen.png";
 
 const floatingImages = [
   { src: caseMaxled, x: "6%", y: "28%", size: "w-36", rotate: -4, scrollSpeed: 0.3 },
-  { src: caseJawel, x: "78%", y: "24%", size: "w-36", rotate: 3, scrollSpeed: 0.5 },
-  { src: caseGmt, x: "4%", y: "62%", size: "w-38", rotate: 2, scrollSpeed: 0.2 },
-  { src: caseBiodiversity, x: "82%", y: "58%", size: "w-32", rotate: -3, scrollSpeed: 0.4 },
+  { src: caseGmt, x: "78%", y: "24%", size: "w-40", rotate: 3, scrollSpeed: 0.5 },
+  { src: caseBiodiversity, x: "4%", y: "62%", size: "w-32", rotate: 2, scrollSpeed: 0.2 },
+  { src: caseJawel, x: "82%", y: "58%", size: "w-36", rotate: -3, scrollSpeed: 0.4 },
   { src: caseBatterij, x: "15%", y: "78%", size: "w-28", rotate: 1, scrollSpeed: 0.15 },
   { src: caseTheoriedoen, x: "72%", y: "76%", size: "w-32", rotate: -2, scrollSpeed: 0.35 },
 ];
 
 const FloatingImage = ({ img }: { img: typeof floatingImages[0] }) => {
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 800], [0, -200 * img.scrollSpeed]);
+  const y = useTransform(scrollY, [0, 800], [0, -120 * img.scrollSpeed]);
 
   return (
     <motion.div
       className={`absolute ${img.size} rounded-xl overflow-hidden`}
       style={{ left: img.x, top: img.y, rotate: img.rotate, y }}
       initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 0.22, scale: 1 }}
+      animate={{ opacity: 0.15, scale: 1 }}
       transition={{ duration: 1.2, ease: "easeOut" }}
     >
       <img
