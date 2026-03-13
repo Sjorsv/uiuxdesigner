@@ -33,49 +33,55 @@ const Hero = () => {
 
       {/* Parallax floating shapes */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Large ring — slow */}
+        {/* Small square — top left */}
         <motion.div
-          style={{ y: y3, opacity }}
-          className="absolute -top-16 -left-24 w-72 h-72 rounded-full border border-brand/10"
+          style={{ y: y3, rotate: rotate1, opacity }}
+          className="absolute top-[12%] left-[10%] w-6 h-6 border border-foreground/15 rounded-sm"
         />
-        {/* Small filled circle — fast */}
+        {/* Cross — top right */}
         <motion.div
-          style={{ y: y4, rotate: rotate1, opacity }}
-          className="absolute top-[18%] right-[12%] w-4 h-4 rounded-full bg-brand/20"
-        />
-        {/* Diagonal line — medium */}
+          style={{ y: y4, rotate: rotate2, opacity }}
+          className="absolute top-[18%] right-[12%]"
+        >
+          <div className="relative w-5 h-5">
+            <div className="absolute top-1/2 left-0 w-full h-px bg-foreground/20 -translate-y-1/2" />
+            <div className="absolute left-1/2 top-0 h-full w-px bg-foreground/20 -translate-x-1/2" />
+          </div>
+        </motion.div>
+        {/* Medium square — left center */}
         <motion.div
           style={{ y: y2, rotate: rotate2, opacity }}
-          className="absolute top-[35%] left-[8%] w-px h-32 bg-brand/15 origin-center"
+          className="absolute top-[40%] left-[6%] w-10 h-10 border border-foreground/10 rounded-sm"
         />
-        {/* Square — medium-fast */}
+        {/* Square — bottom right */}
         <motion.div
           style={{ y: y2, rotate: rotate1, opacity }}
-          className="absolute bottom-[30%] right-[18%] w-8 h-8 border border-border/40 rounded-sm"
+          className="absolute bottom-[30%] right-[18%] w-8 h-8 border border-foreground/15 rounded-sm"
         />
-        {/* Dots cluster — slow */}
+        {/* Cross — bottom left */}
         <motion.div
           style={{ y: y1, opacity }}
-          className="absolute bottom-[22%] left-[15%] flex gap-2"
+          className="absolute bottom-[22%] left-[15%]"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-brand/25" />
-          <div className="w-1.5 h-1.5 rounded-full bg-brand/15" />
-          <div className="w-1.5 h-1.5 rounded-full bg-brand/10" />
+          <div className="relative w-7 h-7">
+            <div className="absolute top-1/2 left-0 w-full h-px bg-foreground/15 -translate-y-1/2" />
+            <div className="absolute left-1/2 top-0 h-full w-px bg-foreground/15 -translate-x-1/2" />
+          </div>
         </motion.div>
-        {/* Large cross — very fast */}
+        {/* Large cross — right */}
         <motion.div
           style={{ y: y4, rotate: rotate2, opacity }}
           className="absolute top-[60%] right-[6%]"
         >
           <div className="relative w-10 h-10">
-            <div className="absolute top-1/2 left-0 w-full h-px bg-border/30 -translate-y-1/2" />
-            <div className="absolute left-1/2 top-0 h-full w-px bg-border/30 -translate-x-1/2" />
+            <div className="absolute top-1/2 left-0 w-full h-px bg-foreground/20 -translate-y-1/2" />
+            <div className="absolute left-1/2 top-0 h-full w-px bg-foreground/20 -translate-x-1/2" />
           </div>
         </motion.div>
-        {/* Arc — medium */}
+        {/* Small square — bottom center */}
         <motion.div
-          style={{ y: y2, opacity }}
-          className="absolute -bottom-8 right-[35%] w-40 h-40 rounded-full border-t border-brand/10"
+          style={{ y: y2, rotate: rotate1, opacity }}
+          className="absolute bottom-[15%] right-[35%] w-5 h-5 border border-foreground/10 rounded-sm"
         />
       </div>
 
