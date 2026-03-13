@@ -1,8 +1,55 @@
 import { motion } from "framer-motion";
+import caseBatterij from "@/assets/case-batterij.png";
+import caseBiodiversity from "@/assets/case-biodiversity.png";
+import caseGmt from "@/assets/case-gmt.png";
+import caseJawel from "@/assets/case-jawel.png";
+import caseMaxled from "@/assets/case-maxled.png";
+import caseTheoriedoen from "@/assets/case-theoriedoen.png";
+
+const floatingImages = [
+  { src: caseBatterij, x: "8%", y: "15%", size: "w-28", delay: 0, duration: 18 },
+  { src: caseGmt, x: "82%", y: "20%", size: "w-32", delay: 0.3, duration: 22 },
+  { src: caseBiodiversity, x: "5%", y: "65%", size: "w-24", delay: 0.6, duration: 20 },
+  { src: caseJawel, x: "88%", y: "70%", size: "w-26", delay: 0.2, duration: 19 },
+  { src: caseMaxled, x: "18%", y: "80%", size: "w-20", delay: 0.5, duration: 21 },
+  { src: caseTheoriedoen, x: "78%", y: "85%", size: "w-24", delay: 0.4, duration: 17 },
+];
 
 const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+      {/* Floating project screenshots */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {floatingImages.map((img, i) => (
+          <motion.div
+            key={i}
+            className={`absolute ${img.size} rounded-lg overflow-hidden shadow-lg opacity-[0.07]`}
+            style={{ left: img.x, top: img.y }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{
+              opacity: 0.07,
+              y: [0, -15, 0],
+            }}
+            transition={{
+              opacity: { duration: 1, delay: img.delay },
+              y: {
+                duration: img.duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: img.delay,
+              },
+            }}
+          >
+            <img
+              src={img.src}
+              alt=""
+              className="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </motion.div>
+        ))}
+      </div>
+
       <div className="swiss-container w-full relative z-10">
         <motion.div
           className="flex flex-col items-center text-center relative"
