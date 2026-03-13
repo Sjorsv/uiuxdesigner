@@ -4,7 +4,7 @@ import { useRef, useCallback, useEffect } from "react";
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const lastPos = useRef<{ x: number; y: number } | null>(null);
-  const segments = useRef<{ x1: number; y1: number; x2: number; y2: number; time: number }[]>([]);
+  const points = useRef<{ x: number; y: number; time: number }[]>([]);
   const rafRef = useRef<number>(0);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
@@ -13,16 +13,7 @@ const Hero = () => {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-
-    if (lastPos.current) {
-      segments.current.push({
-        x1: lastPos.current.x,
-        y1: lastPos.current.y,
-        x2: x,
-        y2: y,
-        time: Date.now(),
-      });
-    }
+    points.current.push({ x, y, time: Date.now() });
     lastPos.current = { x, y };
   }, []);
 
