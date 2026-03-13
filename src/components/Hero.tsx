@@ -78,7 +78,7 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
       >
-        <div className="w-full max-w-[1400px] px-4 [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
+        <div className="swiss-container [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
           <img
             src={portfolioCollage}
             alt="Portfolio overzicht van website projecten"
