@@ -23,9 +23,9 @@ const faqs = [
       "Nee. Hoewel ik gevestigd ben in Nederland werk ik ook met bedrijven uit andere landen. De meeste communicatie verloopt online, waardoor samenwerken op afstand eenvoudig is.",
   },
   {
-    question: "Werk je met WordPress, Webflow of iets anders?",
+    question: "In welk systeem bouwen jullie websites?",
     answer:
-      "Dat hangt af van het project. De meeste websites bouw ik in WordPress of Webflow, maar maatwerk oplossingen met code zijn ook mogelijk wanneer dat beter past bij het project.",
+      "De meeste websites ontwikkelen we als custom WordPress websites. Zo krijgen bedrijven een snelle, schaalbare website die eenvoudig zelf te beheren is. Voor specifieke projecten zijn ook maatwerk oplossingen mogelijk.",
   },
   {
     question: "Kan ik mijn website later zelf aanpassen?",
