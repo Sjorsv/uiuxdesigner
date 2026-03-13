@@ -9,7 +9,7 @@ import caseTheoriedoen from "@/assets/case-theoriedoen.png";
 
 const floatingImages = [
   { src: caseMaxled, x: "6%", y: "28%", size: "w-52", rotate: 0, scrollSpeed: 0.3 },
-  { src: caseBiodiversity, x: "4%", y: "62%", size: "w-52", rotate: 0, scrollSpeed: 0.2 },
+  { src: caseBiodiversity, x: "4%", y: "54%", size: "w-52", rotate: 0, scrollSpeed: 0.2 },
   { src: caseJawel, x: "82%", y: "58%", size: "w-52", rotate: 0, scrollSpeed: 0.4 },
   { src: caseGmt, x: "15%", y: "78%", size: "w-52", rotate: 0, scrollSpeed: 0.15 },
   { src: caseTheoriedoen, x: "72%", y: "76%", size: "w-52", rotate: 0, scrollSpeed: 0.35 },
