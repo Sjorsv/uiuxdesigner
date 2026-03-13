@@ -84,7 +84,7 @@ const Hero = () => {
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
           >
-            <div className="shrink-0 pr-[65px]">
+            <div className="shrink-0 pr-[25px]">
               <img
                 src={portfolioCollage}
                 alt="Portfolio overzicht van website projecten"
