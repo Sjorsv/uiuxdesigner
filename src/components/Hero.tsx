@@ -8,12 +8,12 @@ import caseMaxled from "@/assets/case-maxled.png";
 import caseTheoriedoen from "@/assets/case-theoriedoen.png";
 
 const floatingImages = [
-  { src: caseBatterij, x: "3%", y: "10%", size: "w-44", rotate: -6, scrollSpeed: 0.3 },
-  { src: caseGmt, x: "75%", y: "8%", size: "w-52", rotate: 4, scrollSpeed: 0.5 },
-  { src: caseBiodiversity, x: "1%", y: "58%", size: "w-40", rotate: 3, scrollSpeed: 0.2 },
-  { src: caseJawel, x: "80%", y: "55%", size: "w-44", rotate: -5, scrollSpeed: 0.4 },
-  { src: caseMaxled, x: "12%", y: "82%", size: "w-36", rotate: 2, scrollSpeed: 0.15 },
-  { src: caseTheoriedoen, x: "70%", y: "80%", size: "w-40", rotate: -3, scrollSpeed: 0.35 },
+  { src: caseMaxled, x: "6%", y: "28%", size: "w-36", rotate: -4, scrollSpeed: 0.3 },
+  { src: caseGmt, x: "78%", y: "24%", size: "w-40", rotate: 3, scrollSpeed: 0.5 },
+  { src: caseBiodiversity, x: "4%", y: "62%", size: "w-32", rotate: 2, scrollSpeed: 0.2 },
+  { src: caseJawel, x: "82%", y: "58%", size: "w-36", rotate: -3, scrollSpeed: 0.4 },
+  { src: caseBatterij, x: "15%", y: "78%", size: "w-28", rotate: 1, scrollSpeed: 0.15 },
+  { src: caseTheoriedoen, x: "72%", y: "76%", size: "w-32", rotate: -2, scrollSpeed: 0.35 },
 ];
 
 const FloatingImage = ({ img }: { img: typeof floatingImages[0] }) => {
@@ -31,7 +31,7 @@ const FloatingImage = ({ img }: { img: typeof floatingImages[0] }) => {
       <img
         src={img.src}
         alt=""
-        className="w-full h-auto object-cover blur-[1px]"
+        className="w-full h-auto object-cover"
         loading="lazy"
       />
     </motion.div>
