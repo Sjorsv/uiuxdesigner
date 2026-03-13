@@ -64,7 +64,7 @@ const CaseGmt = () => {
 
       {/* Case Images */}
       <section className="pb-20">
-        <div className="swiss-container space-y-16">
+        <div className="swiss-container">
           {[
             { src: gmtStory, alt: "GMT Equipment verhaal en doel van opdracht" },
             { src: gmtWireframes, alt: "GMT Equipment wireframes" },
