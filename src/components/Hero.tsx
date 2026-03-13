@@ -1,9 +1,7 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import portfolioCollage from "@/assets/portfolio-collage.png";
 
 const Hero = () => {
-  const { scrollY } = useScroll();
-  const collageY = useTransform(scrollY, [0, 600], [0, -80]);
 
   return (
     <section className="relative overflow-hidden pt-36">
