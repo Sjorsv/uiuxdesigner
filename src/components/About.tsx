@@ -8,15 +8,15 @@ const About = () => {
   return (
     <section className="py-32 border-t border-border" id="about">
       <div className="swiss-container">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-12 gap-16"
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
+        >
           <div className="lg:col-span-4">
             <span className="section-number">06</span>
             <span className="section-label ml-4">Over</span>
-            <div
-              className="relative inline-block cursor-pointer"
-              onMouseEnter={() => setHovering(true)}
-              onMouseLeave={() => setHovering(false)}
-            >
+            <div className="relative inline-block">
               <h2 className="heading-lg mt-4">Over UIUXDESIGNER</h2>
               <AnimatePresence>
                 {hovering && (
