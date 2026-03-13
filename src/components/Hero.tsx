@@ -97,7 +97,7 @@ const Hero = () => {
             </div>
           </motion.div>
         </div>
-        <div className="swiss-container mt-6 text-center">
+        <div className="swiss-container mt-3 text-center">
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
             <span className="text-brand">★</span> 4.8 · Meer dan 50+ projecten opgeleverd
           </p>
