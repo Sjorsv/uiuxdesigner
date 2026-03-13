@@ -72,7 +72,7 @@ const Hero = () => {
 
       {/* Portfolio collage flowing down */}
       <motion.div
-        className="relative z-0 w-full flex justify-center mt-8"
+        className="relative z-0 w-full flex justify-center mt-20"
         style={{ y: collageY }}
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
