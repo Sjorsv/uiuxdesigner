@@ -87,12 +87,12 @@ const Hero = () => {
             <img
               src={portfolioCollage}
               alt="Portfolio overzicht van website projecten"
-              className="block h-auto w-[100vw] min-w-[1200px] shrink-0 -mr-8"
+              className="block h-auto w-[100vw] min-w-[1200px] shrink-0 -mr-2"
             />
             <img
               src={portfolioCollage}
               alt=""
-              className="block h-auto w-[100vw] min-w-[1200px] shrink-0 -mr-8"
+              className="block h-auto w-[100vw] min-w-[1200px] shrink-0 -mr-2"
             />
           </motion.div>
         </div>
