@@ -31,7 +31,7 @@ const FloatingImage = ({ img }: { img: typeof floatingImages[0] }) => {
       <img
         src={img.src}
         alt=""
-        className="w-full h-auto object-cover blur-[1px]"
+        className="w-full h-auto object-cover"
         loading="lazy"
       />
     </motion.div>
