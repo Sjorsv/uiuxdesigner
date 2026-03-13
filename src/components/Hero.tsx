@@ -80,19 +80,19 @@ const Hero = () => {
       >
         <div className="[mask-image:linear-gradient(to_bottom,black_40%,transparent_85%)]">
           <motion.div
-            className="flex w-max gap-0"
+            className="flex w-max"
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
           >
             <img
               src={portfolioCollage}
               alt="Portfolio overzicht van website projecten"
-              className="h-auto w-[100vw] min-w-[1200px]"
+              className="block h-auto w-[100vw] min-w-[1200px] shrink-0"
             />
             <img
               src={portfolioCollage}
               alt=""
-              className="h-auto w-[100vw] min-w-[1200px]"
+              className="block h-auto w-[100vw] min-w-[1200px] shrink-0"
             />
           </motion.div>
         </div>
