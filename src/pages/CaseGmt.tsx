@@ -34,7 +34,7 @@ const CaseGmt = () => {
             </Link>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="max-w-2xl">
             {/* Left — Text */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -57,19 +57,6 @@ const CaseGmt = () => {
                 Bekijk website
                 <ExternalLink className="w-4 h-4" />
               </a>
-            </motion.div>
-
-            {/* Right — Hero Image */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <img
-                src={gmtHero}
-                alt="GMT Equipment website op laptop"
-                className="w-full h-auto rounded-sm"
-              />
             </motion.div>
           </div>
         </div>
