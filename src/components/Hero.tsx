@@ -46,16 +46,19 @@ const Hero = () => {
             </motion.a>
           </div>
 
-          <p className="body-lg mb-12 max-w-md">
-            Agency kwaliteit. Freelance flexibiliteit.
+          <p className="body-lg mb-12 max-w-lg">
+            Design, strategie en development.
+            <br />
+            Alles in één traject. Agency kwaliteit. Zonder agency prijs.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center">
             <a href="#portfolio" className="btn-primary">
-              Bekijk werk
+              Bekijk projecten
             </a>
-            <a href="#contact" className="btn-outline">
+            <a href="#contact" className="btn-outline group">
               Start een project
+              <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
             </a>
           </div>
         </motion.div>
