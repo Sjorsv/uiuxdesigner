@@ -3,7 +3,7 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import bouwmeesterFull from "@/assets/bouwmeester-full.png";
+import bouwmeesterFull from "@/assets/bouwmeester-full.jpg";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
