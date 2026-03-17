@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import useEmblaCarousel from "embla-carousel-react";
 import CursorBadge from "./CursorBadge";
+import CasePopup from "./CasePopup";
+import { casePopups } from "@/data/casePopups";
+import type { CasePopupData } from "./CasePopup";
 import caseGmt from "@/assets/case-gmt.png";
 import caseMaxled from "@/assets/case-maxled.png";
 import caseBouwmeester from "@/assets/case-bouwmeester.png";
@@ -33,6 +36,7 @@ const cases = [
     description: "Professionele website voor een loodgieter- en installatiebedrijf in de regio Zwolle. Focus op dienstverlening, vertrouwen en lokale vindbaarheid.",
     industry: "Bouw & Installatie",
     image: caseBouwmeester,
+    popup: true,
   },
   {
     title: "Lohues Installatie Techniek",
@@ -76,6 +80,7 @@ const CaseSlider = () => {
   const navigate = useNavigate();
   const [hovering, setHovering] = useState(false);
   const [dragStartPos, setDragStartPos] = useState({ x: 0, y: 0 });
+  const [popupData, setPopupData] = useState<CasePopupData | null>(null);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     dragFree: true,
@@ -138,8 +143,12 @@ const CaseSlider = () => {
               onPointerDown={(e) => setDragStartPos({ x: e.clientX, y: e.clientY })}
               onPointerUp={(e) => {
                 const dist = Math.abs(e.clientX - dragStartPos.x) + Math.abs(e.clientY - dragStartPos.y);
-                if (dist < 5 && project.slug) {
-                  navigate(project.slug);
+                if (dist < 5) {
+                  if (project.slug) {
+                    navigate(project.slug);
+                  } else if ((project as any).popup && casePopups[project.title]) {
+                    setPopupData(casePopups[project.title]);
+                  }
                 }
               }}
             >
@@ -170,6 +179,7 @@ const CaseSlider = () => {
           Bekijk alle projecten
         </a>
       </div>
+      <CasePopup data={popupData} onClose={() => setPopupData(null)} />
     </section>
   );
 };
