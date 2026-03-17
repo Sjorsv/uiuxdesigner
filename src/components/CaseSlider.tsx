@@ -36,6 +36,7 @@ const cases = [
     description: "Professionele website voor een loodgieter- en installatiebedrijf in de regio Zwolle. Focus op dienstverlening, vertrouwen en lokale vindbaarheid.",
     industry: "Bouw & Installatie",
     image: caseBouwmeester,
+    popup: true,
   },
   {
     title: "Lohues Installatie Techniek",
