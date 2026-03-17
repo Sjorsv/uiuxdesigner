@@ -43,7 +43,6 @@ const Services = () => {
                   </div>
                   <div className="flex items-center gap-3 mt-2">
                     <span className="section-number">{String(index + 1).padStart(2, "0")}</span>
-                    <ArrowRight className="w-4 h-4 text-brand opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                   </div>
                 </div>
               </motion.div>
