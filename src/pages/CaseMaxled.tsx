@@ -135,27 +135,6 @@ const CaseMaxled = () => {
         </div>
       </section>
 
-      {/* Text: Designaanpak */}
-      <section className="py-24 md:py-32">
-        <div className="swiss-container">
-          <motion.div {...fadeUp} className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            <div className="lg:col-span-5">
-              <span className="section-label mb-4 block">Designaanpak</span>
-              <h2 className="heading-md text-foreground">
-                Wireframes als fundament voor een krachtige, minimalistische stijl.
-              </h2>
-            </div>
-            <div className="lg:col-span-6 lg:col-start-7 flex flex-col justify-center">
-              <p className="body-md mb-6">
-                We startten met wireframes gericht op snelle oriëntatie. Vanuit daar bouwden we het UI-design op rond een krachtige, minimalistische stijl met de oranje merkkleur als visuele leidraad.
-              </p>
-              <p className="body-md">
-                Designbeslissingen: geel & zwart als hoofdkleur (MaxLED brand), zwarte accenten voor technische degelijkheid, sans-serif typografie voor moderniteit, en grote CTA-knoppen boven en onder de header.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
 
       {/* Text: Visual Design */}
