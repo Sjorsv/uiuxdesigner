@@ -157,12 +157,6 @@ const CaseMaxled = () => {
         </div>
       </section>
 
-      {/* Image: Designpak */}
-      <section>
-        <div className="swiss-container">
-          <motion.img {...fadeUp} src={maxledDesignpak} alt="MaxLED designaanpak wireframes" className="w-full h-auto rounded-sm" />
-        </div>
-      </section>
 
       {/* Text: Visual Design */}
       <section className="py-24 md:py-32">
