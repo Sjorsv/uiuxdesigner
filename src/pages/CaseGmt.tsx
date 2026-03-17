@@ -271,6 +271,23 @@ const CaseGmt = () => {
         </div>
       </section>
 
+      {/* Videos */}
+      <section className="pb-20">
+        <div className="swiss-container flex flex-col gap-0">
+          {[1, 2, 3, 4, 5].map((num) => (
+            <motion.div key={num} {...fadeUp}>
+              <video
+                src={`/videos/gmt-video-${num}.mp4`}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-auto rounded-sm"
+              />
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="py-20 border-t border-border">
