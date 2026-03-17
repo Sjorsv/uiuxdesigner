@@ -172,7 +172,7 @@ const CaseSlider = () => {
           Bekijk alle projecten
         </a>
       </div>
-      <CasePopup data={popupData} onClose={() => setPopupData(null)} />
+      
     </section>
   );
 };
