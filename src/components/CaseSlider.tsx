@@ -80,6 +80,7 @@ const CaseSlider = () => {
   const navigate = useNavigate();
   const [hovering, setHovering] = useState(false);
   const [dragStartPos, setDragStartPos] = useState({ x: 0, y: 0 });
+  const [popupData, setPopupData] = useState<CasePopupData | null>(null);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     dragFree: true,
