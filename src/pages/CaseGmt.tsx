@@ -191,6 +191,15 @@ const CaseGmt = () => {
         </div>
       </section>
 
+      {/* Video 1 */}
+      <section className="pt-8">
+        <div className="swiss-container">
+          <motion.div {...fadeUp}>
+            <video src="/videos/gmt-video-1.mp4" autoPlay loop muted playsInline className="w-full h-auto rounded-sm" />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Text: UX */}
       <section className="py-24 md:py-32">
         <div className="swiss-container">
@@ -217,6 +226,15 @@ const CaseGmt = () => {
       <section>
         <div className="swiss-container">
           <motion.img {...fadeUp} src={gmtUx} alt="GMT Equipment UX-aanpak" className="w-full h-auto rounded-sm" />
+        </div>
+      </section>
+
+      {/* Video 5 */}
+      <section className="pt-8">
+        <div className="swiss-container">
+          <motion.div {...fadeUp}>
+            <video src="/videos/gmt-video-5.mp4" autoPlay loop muted playsInline className="w-full h-auto rounded-sm" />
+          </motion.div>
         </div>
       </section>
 
@@ -271,21 +289,12 @@ const CaseGmt = () => {
         </div>
       </section>
 
-      {/* Videos */}
+      {/* Video 4 */}
       <section className="pb-20">
-        <div className="swiss-container flex flex-col gap-0">
-          {[1, 2, 3, 4, 5].map((num) => (
-            <motion.div key={num} {...fadeUp}>
-              <video
-                src={`/videos/gmt-video-${num}.mp4`}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-auto rounded-sm"
-              />
-            </motion.div>
-          ))}
+        <div className="swiss-container">
+          <motion.div {...fadeUp}>
+            <video src="/videos/gmt-video-4.mp4" autoPlay loop muted playsInline className="w-full h-auto rounded-sm" />
+          </motion.div>
         </div>
       </section>
 
