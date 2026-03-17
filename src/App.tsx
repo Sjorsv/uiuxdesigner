@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
 import CaseGmt from "./pages/CaseGmt";
 import CaseMaxled from "./pages/CaseMaxled";
+import CaseBouwmeester from "./pages/CaseBouwmeester";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
 
