@@ -143,8 +143,12 @@ const CaseSlider = () => {
               onPointerDown={(e) => setDragStartPos({ x: e.clientX, y: e.clientY })}
               onPointerUp={(e) => {
                 const dist = Math.abs(e.clientX - dragStartPos.x) + Math.abs(e.clientY - dragStartPos.y);
-                if (dist < 5 && project.slug) {
-                  navigate(project.slug);
+                if (dist < 5) {
+                  if (project.slug) {
+                    navigate(project.slug);
+                  } else if ((project as any).popup && casePopups[project.title]) {
+                    setPopupData(casePopups[project.title]);
+                  }
                 }
               }}
             >
