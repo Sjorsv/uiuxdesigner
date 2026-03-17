@@ -289,6 +289,15 @@ const CaseMaxled = () => {
         </div>
       </section>
 
+      {/* Video */}
+      <section className="pb-20">
+        <div className="swiss-container">
+          <motion.div {...fadeUp}>
+            <video src="/videos/maxled-video.mp4" autoPlay loop muted playsInline className="w-full h-auto rounded-sm" />
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 border-t border-border">
         <div className="swiss-container text-center">
