@@ -271,12 +271,6 @@ const CaseGmt = () => {
         </div>
       </section>
 
-      {/* Image: Decisions */}
-      <section className="pb-20">
-        <div className="swiss-container">
-          <motion.img {...fadeUp} src={gmtDecisions} alt="GMT Equipment designbeslissingen" className="w-full h-auto rounded-sm" />
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="py-20 border-t border-border">
