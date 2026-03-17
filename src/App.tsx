@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
 import CaseGmt from "./pages/CaseGmt";
 import CaseMaxled from "./pages/CaseMaxled";
+import CaseBouwmeester from "./pages/CaseBouwmeester";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/case/gmt-equipment" element={<CaseGmt />} />
           <Route path="/case/maxled" element={<CaseMaxled />} />
+          <Route path="/case/bouwmeester" element={<CaseBouwmeester />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

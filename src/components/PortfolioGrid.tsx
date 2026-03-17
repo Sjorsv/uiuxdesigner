@@ -3,9 +3,6 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import CursorBadge from "./CursorBadge";
-import CasePopup from "./CasePopup";
-import { casePopups } from "@/data/casePopups";
-import type { CasePopupData } from "./CasePopup";
 import caseGmt from "@/assets/case-gmt.png";
 import caseMaxled from "@/assets/case-maxled.png";
 import caseBouwmeester from "@/assets/case-bouwmeester.png";
@@ -19,7 +16,7 @@ import caseJawel from "@/assets/case-jawel.png";
 const projects = [
   { title: "GMT Equipment", industry: "Industrial", description: "Website redesign met focus op conversie en technische merkidentiteit", image: caseGmt, slug: "/case/gmt-equipment" },
   { title: "MaxLED", industry: "E-commerce", description: "E-commerce platform voor verhuur en verkoop van ledschermen", image: caseMaxled, slug: "/case/maxled" },
-  { title: "Bouwmeester", industry: "Bouw & Installatie", description: "Professionele website voor loodgieter- en installatiebedrijf", image: caseBouwmeester, popup: true },
+  { title: "Bouwmeester", industry: "Bouw & Installatie", description: "Professionele website voor loodgieter- en installatiebedrijf", image: caseBouwmeester, slug: "/case/bouwmeester" },
   { title: "Lohues Installatie Techniek", industry: "Energie & Duurzaamheid", description: "Website voor familiebedrijf in verduurzaming", image: caseLohues },
   { title: "Batterij-recyclen.nl", industry: "Duurzaamheid", description: "Platform voor verantwoord batterijbeheer en recycling", image: caseBatterij },
   { title: "Theoriedoen.be", industry: "EdTech", description: "Online platform voor autotheorie-examens", image: caseTheoriedoen },
@@ -31,15 +28,6 @@ const projects = [
 const PortfolioGrid = () => {
   const navigate = useNavigate();
   const [hovering, setHovering] = useState(false);
-  const [popupData, setPopupData] = useState<CasePopupData | null>(null);
-
-  const handleClick = (project: typeof projects[0]) => {
-    if (project.slug) {
-      navigate(project.slug);
-    } else if ((project as any).popup && casePopups[project.title]) {
-      setPopupData(casePopups[project.title]);
-    }
-  };
 
   return (
     <section className="py-32 border-t border-border" id="portfolio">
@@ -70,7 +58,9 @@ const PortfolioGrid = () => {
               transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
               onMouseEnter={() => setHovering(true)}
               onMouseLeave={() => setHovering(false)}
-              onClick={() => handleClick(project)}
+              onClick={() => {
+                if (project.slug) navigate(project.slug);
+              }}
             >
               <div className="bg-surface rounded-sm overflow-hidden mb-4 relative">
                 <div className="overflow-hidden">
@@ -88,8 +78,6 @@ const PortfolioGrid = () => {
           ))}
         </div>
       </div>
-
-      <CasePopup data={popupData} onClose={() => setPopupData(null)} />
     </section>
   );
 };
