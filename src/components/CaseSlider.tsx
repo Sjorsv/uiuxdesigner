@@ -26,6 +26,7 @@ const cases = [
     description: "E-commerce platform redesign voor de #1 in verhuur en verkoop van vaste en mobiele ledschermen. Focus op productpresentatie en offerte-aanvragen.",
     industry: "E-commerce",
     image: caseMaxled,
+    slug: "/case/maxled",
   },
   {
     title: "Bouwmeester",
