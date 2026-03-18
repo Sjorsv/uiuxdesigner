@@ -70,7 +70,7 @@ const CaseJawel = () => {
                 </div>
                 <div>
                   <span className="section-label mb-1 block">Jaar</span>
-                  <p className="font-display font-bold text-foreground">2024</p>
+                  <p className="font-display font-bold text-foreground">2025</p>
                 </div>
               </div>
             </motion.div>
