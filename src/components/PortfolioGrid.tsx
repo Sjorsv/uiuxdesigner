@@ -19,7 +19,7 @@ const projects = [
   { title: "Bouwmeester", industry: "Bouw & Installatie", description: "Professionele website voor loodgieter- en installatiebedrijf", image: caseBouwmeester, slug: "/case/bouwmeester" },
   { title: "Lohues Installatie Techniek", industry: "Energie & Duurzaamheid", description: "Website voor familiebedrijf in verduurzaming", image: caseLohues, slug: "/case/lohues" },
   { title: "Batterij-recyclen.nl", industry: "Duurzaamheid", description: "Platform voor verantwoord batterijbeheer en recycling", image: caseBatterij },
-  { title: "Theoriedoen.be", industry: "EdTech", description: "Online platform voor autotheorie-examens", image: caseTheoriedoen },
+  { title: "Theoriedoen.be", industry: "EdTech", description: "Online platform voor autotheorie-examens", image: caseTheoriedoen, slug: "/case/theoriedoen" },
   { title: "Nederlands Soortenregister", industry: "Overheid & Wetenschap", description: "Database voor Nederlandse biodiversiteit", image: caseSoortenregister },
   { title: "Biodiversity", industry: "Wetenschap", description: "Platform voor het ontdekken van soorten", image: caseBiodiversity },
   { title: "Jawel Infra", industry: "Infrastructuur", description: "Krachtige website voor infrastructuurbedrijf", image: caseJawel },
