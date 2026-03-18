@@ -13,6 +13,14 @@ import jawelLogoVoorstellen from "@/assets/jawel-logo-voorstellen.png";
 import jawelIconen from "@/assets/jawel-iconen.png";
 import jawelBranding from "@/assets/jawel-branding.png";
 import jawelFotografie from "@/assets/jawel-fotografie.png";
+import jawelWebsiteConcept from "@/assets/jawel-website-concept.png";
+import jawelHeaders from "@/assets/jawel-headers.png";
+import jawelFullpage from "@/assets/jawel-fullpage.png";
+import jawelToepassingen from "@/assets/jawel-toepassingen.png";
+import jawelVisitekaartje from "@/assets/jawel-visitekaartje.png";
+import jawelBriefpapier from "@/assets/jawel-briefpapier.png";
+import jawelSocialmedia from "@/assets/jawel-socialmedia.png";
+import jawelCampagne from "@/assets/jawel-campagne.png";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
