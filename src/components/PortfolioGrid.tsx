@@ -21,7 +21,7 @@ const projects = [
   { title: "Batterij-recyclen.nl", industry: "Duurzaamheid", description: "Platform voor verantwoord batterijbeheer en recycling", image: caseBatterij, slug: "/case/batterij" },
   { title: "Theoriedoen.be", industry: "EdTech", description: "Online platform voor autotheorie-examens", image: caseTheoriedoen, slug: "/case/theoriedoen" },
   { title: "Nederlands Soortenregister", industry: "Overheid & Wetenschap", description: "Database voor Nederlandse biodiversiteit", image: caseSoortenregister, slug: "/case/soortenregister" },
-  { title: "Biodiversity", industry: "Wetenschap", description: "Platform voor het ontdekken van soorten", image: caseBiodiversity },
+  { title: "ARISE Biodiversity", industry: "Wetenschap", description: "UX case study en prototype voor biodiversiteitsplatform", image: caseBiodiversity, slug: "/case/arise" },
   { title: "Jawel Infra", industry: "Infrastructuur", description: "Krachtige website voor infrastructuurbedrijf", image: caseJawel, slug: "/case/jawel" },
 ];
 
