@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -11,10 +14,22 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleHashLink = (hash: string) => {
+    setMenuOpen(false);
+    if (location.pathname === "/") {
+      // Already on homepage, just scroll
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Navigate to homepage with hash
+      navigate("/" + hash);
+    }
+  };
+
   const navItems = [
     { label: "Cases", href: "/portfolio" },
-    { label: "Diensten", href: "/#services" },
-    { label: "Over", href: "/#about" },
+    { label: "Diensten", hash: "#services" },
+    { label: "Over", hash: "#about" },
   ];
 
   return (
@@ -30,18 +45,28 @@ const Navbar = () => {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-10">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="text-sm font-body text-muted-foreground hover:text-foreground transition-colors duration-300 tracking-wide"
-            >
-              {item.label}
-            </a>
-          ))}
-          <a href="#contact" className="btn-primary text-xs py-3 px-6">
+          {navItems.map((item) =>
+            item.hash ? (
+              <button
+                key={item.label}
+                onClick={() => handleHashLink(item.hash)}
+                className="text-sm font-body text-muted-foreground hover:text-foreground transition-colors duration-300 tracking-wide"
+              >
+                {item.label}
+              </button>
+            ) : (
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-sm font-body text-muted-foreground hover:text-foreground transition-colors duration-300 tracking-wide"
+              >
+                {item.label}
+              </a>
+            )
+          )}
+          <button onClick={() => handleHashLink("#contact")} className="btn-primary text-xs py-3 px-6">
             Contact
-          </a>
+          </button>
         </div>
 
         {/* Mobile menu button */}
@@ -66,19 +91,29 @@ const Navbar = () => {
             className="md:hidden bg-background border-b border-border"
           >
             <div className="swiss-container py-8 flex flex-col gap-6">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="text-2xl font-display font-bold text-foreground"
-                >
-                  {item.label}
-                </a>
-              ))}
-              <a href="#contact" className="btn-primary text-xs py-3 px-6 w-fit" onClick={() => setMenuOpen(false)}>
+              {navItems.map((item) =>
+                item.hash ? (
+                  <button
+                    key={item.label}
+                    onClick={() => handleHashLink(item.hash)}
+                    className="text-2xl font-display font-bold text-foreground text-left"
+                  >
+                    {item.label}
+                  </button>
+                ) : (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="text-2xl font-display font-bold text-foreground"
+                  >
+                    {item.label}
+                  </a>
+                )
+              )}
+              <button onClick={() => handleHashLink("#contact")} className="btn-primary text-xs py-3 px-6 w-fit">
                 Contact
-              </a>
+              </button>
             </div>
           </motion.div>
         )}
