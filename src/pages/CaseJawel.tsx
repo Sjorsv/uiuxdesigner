@@ -229,6 +229,85 @@ const CaseJawel = () => {
         <img src={jawelFotografie} alt="Jawel Infra fotografie stijl" className="w-full h-auto" />
       </motion.section>
 
+      {/* Website Concept */}
+      <section className="py-24">
+        <div className="swiss-container">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <motion.div className="lg:col-span-5" {...fadeUp}>
+              <span className="section-number">07</span>
+              <span className="section-label ml-4">Webdesign</span>
+              <h2 className="heading-lg mt-4">Website concept</h2>
+            </motion.div>
+            <motion.div className="lg:col-span-7" {...fadeUp} transition={{ duration: 0.6, delay: 0.15 }}>
+              <p className="body-lg text-muted-foreground">
+                Een moderne, donkere website die de kracht van het merk weerspiegelt. Met dynamische oranje accenten, bold typografie en professionele fotografie als kernvisuelen.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <motion.section className="pb-12" {...fadeUp}>
+        <img src={jawelWebsiteConcept} alt="Jawel Infra website concept" className="w-full h-auto" />
+      </motion.section>
+
+      <motion.section className="pb-12" {...fadeUp}>
+        <img src={jawelHeaders} alt="Jawel Infra header voorstellen" className="w-full h-auto" />
+      </motion.section>
+
+      <motion.section className="pb-24" {...fadeUp}>
+        <img src={jawelFullpage} alt="Jawel Infra volledige website" className="w-full h-auto" />
+      </motion.section>
+
+      {/* Toepassingen */}
+      <section className="py-24">
+        <div className="swiss-container">
+          <motion.div {...fadeUp}>
+            <span className="section-number">08</span>
+            <span className="section-label ml-4">Toepassingen</span>
+            <h2 className="heading-lg mt-4 mb-12">Merkdragers & Print</h2>
+          </motion.div>
+        </div>
+      </section>
+
+      <motion.section className="pb-12" {...fadeUp}>
+        <img src={jawelToepassingen} alt="Jawel Infra toepassingen concept" className="w-full h-auto" />
+      </motion.section>
+
+      <motion.section className="pb-12" {...fadeUp}>
+        <img src={jawelVisitekaartje} alt="Jawel Infra visitekaartje" className="w-full h-auto" />
+      </motion.section>
+
+      <motion.section className="pb-24" {...fadeUp}>
+        <img src={jawelBriefpapier} alt="Jawel Infra briefpapier" className="w-full h-auto" />
+      </motion.section>
+
+      {/* Social Media & Campagne */}
+      <section className="py-24">
+        <div className="swiss-container">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <motion.div className="lg:col-span-5" {...fadeUp}>
+              <span className="section-number">09</span>
+              <span className="section-label ml-4">Online</span>
+              <h2 className="heading-lg mt-4">Social Media & Campagne</h2>
+            </motion.div>
+            <motion.div className="lg:col-span-7" {...fadeUp} transition={{ duration: 0.6, delay: 0.15 }}>
+              <p className="body-lg text-muted-foreground">
+                Social media templates en campagnemateriaal die de merkidentiteit consistent doorvertalen naar digitale kanalen en wervingscampagnes.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <motion.section className="pb-12" {...fadeUp}>
+        <img src={jawelSocialmedia} alt="Jawel Infra social media template" className="w-full h-auto" />
+      </motion.section>
+
+      <motion.section className="pb-24" {...fadeUp}>
+        <img src={jawelCampagne} alt="Jawel Infra campagne voorbeeld" className="w-full h-auto" />
+      </motion.section>
+
       {/* CTA */}
       <section className="py-24 border-t border-border">
         <div className="swiss-container text-center">
