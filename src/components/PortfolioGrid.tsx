@@ -22,7 +22,7 @@ const projects = [
   { title: "Theoriedoen.be", industry: "EdTech", description: "Online platform voor autotheorie-examens", image: caseTheoriedoen, slug: "/case/theoriedoen" },
   { title: "Nederlands Soortenregister", industry: "Overheid & Wetenschap", description: "Database voor Nederlandse biodiversiteit", image: caseSoortenregister, slug: "/case/soortenregister" },
   { title: "Biodiversity", industry: "Wetenschap", description: "Platform voor het ontdekken van soorten", image: caseBiodiversity },
-  { title: "Jawel Infra", industry: "Infrastructuur", description: "Krachtige website voor infrastructuurbedrijf", image: caseJawel },
+  { title: "Jawel Infra", industry: "Infrastructuur", description: "Krachtige website voor infrastructuurbedrijf", image: caseJawel, slug: "/case/jawel" },
 ];
 
 const PortfolioGrid = () => {
