@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const FinalCTA = () => {
   return (
-    <section className="py-32 md:py-48 border-t border-border" id="contact">
+    <section className="py-32 md:py-48 border-t border-border" id="final-cta">
       <div className="swiss-container text-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
