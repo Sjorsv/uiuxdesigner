@@ -53,7 +53,7 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center mb-4">
-            <a href="#portfolio" className="btn-primary">
+            <a href="#cases" className="btn-primary">
               Bekijk projecten
             </a>
             <a href="#contact" className="btn-outline group">

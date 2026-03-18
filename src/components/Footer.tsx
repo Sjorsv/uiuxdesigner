@@ -11,8 +11,8 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-wrap gap-8">
-            <a href="#portfolio" className="text-sm text-muted-foreground font-body hover:text-foreground transition-colors">
-              Werk
+            <a href="/portfolio" className="text-sm text-muted-foreground font-body hover:text-foreground transition-colors">
+              Cases
             </a>
             <a href="#services" className="text-sm text-muted-foreground font-body hover:text-foreground transition-colors">
               Diensten

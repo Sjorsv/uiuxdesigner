@@ -12,7 +12,7 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { label: "Werk", href: "#portfolio" },
+    { label: "Cases", href: "/portfolio" },
     { label: "Diensten", href: "#services" },
     { label: "Over", href: "#about" },
   ];
