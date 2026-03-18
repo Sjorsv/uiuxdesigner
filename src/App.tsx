@@ -9,6 +9,7 @@ import CaseGmt from "./pages/CaseGmt";
 import CaseMaxled from "./pages/CaseMaxled";
 import CaseBouwmeester from "./pages/CaseBouwmeester";
 import CaseLohues from "./pages/CaseLohues";
+import CaseTheoriedoen from "./pages/CaseTheoriedoen";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
 
