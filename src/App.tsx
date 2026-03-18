@@ -12,6 +12,7 @@ import CaseLohues from "./pages/CaseLohues";
 import CaseTheoriedoen from "./pages/CaseTheoriedoen";
 import CaseBatterij from "./pages/CaseBatterij";
 import CaseSoortenregister from "./pages/CaseSoortenregister";
+import CaseJawel from "./pages/CaseJawel";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
 
