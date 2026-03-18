@@ -10,6 +10,7 @@ import CaseMaxled from "./pages/CaseMaxled";
 import CaseBouwmeester from "./pages/CaseBouwmeester";
 import CaseLohues from "./pages/CaseLohues";
 import CaseTheoriedoen from "./pages/CaseTheoriedoen";
+import CaseBatterij from "./pages/CaseBatterij";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
 
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/case/bouwmeester" element={<CaseBouwmeester />} />
           <Route path="/case/lohues" element={<CaseLohues />} />
           <Route path="/case/theoriedoen" element={<CaseTheoriedoen />} />
+          <Route path="/case/batterij" element={<CaseBatterij />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

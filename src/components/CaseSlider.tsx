@@ -47,6 +47,7 @@ const cases = [
     description: "Platform voor verantwoord batterijbeheer en recycling. Focus op de transitie naar een groene economie en inzamelpunten.",
     industry: "Duurzaamheid",
     image: caseBatterij,
+    slug: "/case/batterij",
   },
   {
     title: "Theoriedoen.be",

@@ -18,7 +18,7 @@ const projects = [
   { title: "MaxLED", industry: "E-commerce", description: "E-commerce platform voor verhuur en verkoop van ledschermen", image: caseMaxled, slug: "/case/maxled" },
   { title: "Bouwmeester", industry: "Bouw & Installatie", description: "Professionele website voor loodgieter- en installatiebedrijf", image: caseBouwmeester, slug: "/case/bouwmeester" },
   { title: "Lohues Installatie Techniek", industry: "Energie & Duurzaamheid", description: "Website voor familiebedrijf in verduurzaming", image: caseLohues, slug: "/case/lohues" },
-  { title: "Batterij-recyclen.nl", industry: "Duurzaamheid", description: "Platform voor verantwoord batterijbeheer en recycling", image: caseBatterij },
+  { title: "Batterij-recyclen.nl", industry: "Duurzaamheid", description: "Platform voor verantwoord batterijbeheer en recycling", image: caseBatterij, slug: "/case/batterij" },
   { title: "Theoriedoen.be", industry: "EdTech", description: "Online platform voor autotheorie-examens", image: caseTheoriedoen, slug: "/case/theoriedoen" },
   { title: "Nederlands Soortenregister", industry: "Overheid & Wetenschap", description: "Database voor Nederlandse biodiversiteit", image: caseSoortenregister },
   { title: "Biodiversity", industry: "Wetenschap", description: "Platform voor het ontdekken van soorten", image: caseBiodiversity },
