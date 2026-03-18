@@ -60,6 +60,7 @@ const cases = [
     description: "Centrale database voor Nederlandse biodiversiteit met gestandaardiseerde referentiedata, foto's en geluiden.",
     industry: "Overheid & Wetenschap",
     image: caseSoortenregister,
+    slug: "/case/soortenregister",
   },
   {
     title: "Biodiversity",
