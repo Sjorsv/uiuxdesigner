@@ -11,6 +11,7 @@ import CaseBouwmeester from "./pages/CaseBouwmeester";
 import CaseLohues from "./pages/CaseLohues";
 import CaseTheoriedoen from "./pages/CaseTheoriedoen";
 import CaseBatterij from "./pages/CaseBatterij";
+import CaseSoortenregister from "./pages/CaseSoortenregister";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
 
