@@ -13,8 +13,8 @@ const Navbar = () => {
 
   const navItems = [
     { label: "Cases", href: "/portfolio" },
-    { label: "Diensten", href: "#services" },
-    { label: "Over", href: "#about" },
+    { label: "Diensten", href: "/#services" },
+    { label: "Over", href: "/#about" },
   ];
 
   return (
