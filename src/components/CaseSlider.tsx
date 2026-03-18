@@ -73,6 +73,7 @@ const cases = [
     description: "Krachtige website voor een infrastructuurbedrijf. Focus op betrouwbaarheid, diensten en projectpresentatie.",
     industry: "Infrastructuur",
     image: caseJawel,
+    slug: "/case/jawel",
   },
 ];
 
