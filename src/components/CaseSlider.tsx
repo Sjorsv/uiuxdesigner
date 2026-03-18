@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { Hand } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import CursorBadge from "./CursorBadge";
 import caseGmt from "@/assets/case-gmt.png";
@@ -77,6 +78,7 @@ const CaseSlider = () => {
   const navigate = useNavigate();
   const [hovering, setHovering] = useState(false);
   const [dragStartPos, setDragStartPos] = useState({ x: 0, y: 0 });
+  const [showSwipeHint, setShowSwipeHint] = useState(true);
   
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
@@ -97,9 +99,19 @@ const CaseSlider = () => {
     updateNavigationState();
     emblaApi.on("select", updateNavigationState);
     emblaApi.on("reInit", updateNavigationState);
+    
+    // Hide swipe hint on first scroll
+    const hideHint = () => setShowSwipeHint(false);
+    emblaApi.on("scroll", hideHint);
+    
+    // Auto-hide after 3 seconds
+    const timer = setTimeout(() => setShowSwipeHint(false), 3500);
+    
     return () => {
       emblaApi.off("select", updateNavigationState);
       emblaApi.off("reInit", updateNavigationState);
+      emblaApi.off("scroll", hideHint);
+      clearTimeout(timer);
     };
   }, [emblaApi, updateNavigationState]);
 
@@ -125,7 +137,27 @@ const CaseSlider = () => {
         </div>
       </div>
 
-      <div className="overflow-hidden px-6 md:px-12 lg:px-16 cursor-grab active:cursor-grabbing" ref={emblaRef}>
+      <div className="overflow-hidden px-6 md:px-12 lg:px-16 cursor-grab active:cursor-grabbing relative" ref={emblaRef}>
+        <AnimatePresence>
+          {showSwipeHint && (
+            <motion.div
+              className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div
+                className="flex items-center gap-2 bg-primary/90 text-primary-foreground px-5 py-3 rounded-full shadow-lg"
+                animate={{ x: [0, 40, 0] }}
+                transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Hand className="w-5 h-5" />
+                <span className="text-sm font-medium">Swipe</span>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
         <div className="flex gap-8 select-none">
           {cases.map((project, index) => (
             <motion.div
