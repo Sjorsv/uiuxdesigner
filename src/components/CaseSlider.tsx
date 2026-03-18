@@ -99,9 +99,19 @@ const CaseSlider = () => {
     updateNavigationState();
     emblaApi.on("select", updateNavigationState);
     emblaApi.on("reInit", updateNavigationState);
+    
+    // Hide swipe hint on first scroll
+    const hideHint = () => setShowSwipeHint(false);
+    emblaApi.on("scroll", hideHint);
+    
+    // Auto-hide after 3 seconds
+    const timer = setTimeout(() => setShowSwipeHint(false), 3500);
+    
     return () => {
       emblaApi.off("select", updateNavigationState);
       emblaApi.off("reInit", updateNavigationState);
+      emblaApi.off("scroll", hideHint);
+      clearTimeout(timer);
     };
   }, [emblaApi, updateNavigationState]);
 
