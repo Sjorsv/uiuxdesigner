@@ -63,10 +63,11 @@ const cases = [
     slug: "/case/soortenregister",
   },
   {
-    title: "Biodiversity",
-    description: "Vernieuwend platform voor het zoeken, analyseren en ontdekken van soorten. Moderne interface met geavanceerde zoekfunctionaliteit.",
+    title: "ARISE Biodiversity",
+    description: "UX case study en prototype voor het ARISE-platform — biodiversiteitsmonitoring met AI-gestuurde soortenherkenning.",
     industry: "Wetenschap",
     image: caseBiodiversity,
+    slug: "/case/arise",
   },
   {
     title: "Jawel Infra",
