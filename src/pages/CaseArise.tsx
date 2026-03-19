@@ -56,7 +56,7 @@ const CaseArise = () => {
                 </div>
                 <div>
                   <span className="section-label mb-1 block">Jaar</span>
-                  <p className="font-display font-bold text-foreground">2025</p>
+                  <p className="font-display font-bold text-foreground">2022</p>
                 </div>
               </div>
             </motion.div>
