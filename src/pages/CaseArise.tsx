@@ -64,10 +64,7 @@ const CaseArise = () => {
         </div>
       </section>
 
-      {/* Hero Image */}
-      <motion.section {...fadeUp}>
-        <img src={caseBiodiversity} alt="ARISE Biodiversity platform mockup" className="w-full h-auto" />
-      </motion.section>
+
 
       {/* Project Overview */}
       <section className="py-24">
