@@ -1,9 +1,33 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Search, Database, Users, Microscope, Camera, Brain } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import caseBiodiversity from "@/assets/case-biodiversity.png";
+
+// Images
+import ariseRole from "@/assets/arise-351.png";
+import ariseProcess from "@/assets/arise-352.png";
+import ariseTimeline from "@/assets/arise-353.png";
+import ariseDiscover from "@/assets/arise-354.png";
+import ariseLeanCanvas from "@/assets/arise-357.png";
+import ariseCardSorting from "@/assets/arise-358.png";
+import ariseHypotheses from "@/assets/arise-359.png";
+import ariseFeatures from "@/assets/arise-360.png";
+import arisePersonas from "@/assets/arise-361.png";
+import ariseEmpathyMap from "@/assets/arise-362.png";
+import ariseUserFlow from "@/assets/arise-363.png";
+import ariseDataFlow from "@/assets/arise-dataflow.png";
+import ariseIdeation from "@/assets/arise-365.png";
+import ariseWireframes from "@/assets/arise-367.png";
+import ariseDesign from "@/assets/arise-368.png";
+import ariseHifi from "@/assets/arise-369.png";
+import arisePrototype from "@/assets/arise-370.png";
+import ariseTesting from "@/assets/arise-371.png";
+import ariseTestResults from "@/assets/arise-372.png";
+import ariseFeedback from "@/assets/arise-373.png";
+import ariseScreens from "@/assets/arise-374.png";
+import ariseUserFlow2 from "@/assets/arise-UserFlow-iteratie-2.png";
+import ariseDiopsis from "@/assets/arise-image-68.png";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -64,15 +88,18 @@ const CaseArise = () => {
         </div>
       </section>
 
+      {/* Our Role */}
+      <motion.section {...fadeUp}>
+        <img src={ariseRole} alt="Our Role - Rosalie Kross & Sjors Platjauw" className="w-full h-auto" />
+      </motion.section>
 
-
-      {/* Project Overview */}
+      {/* About ARISE */}
       <section className="py-24">
         <div className="swiss-container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             <motion.div className="lg:col-span-5" {...fadeUp}>
               <span className="section-number">01</span>
-              <span className="section-label ml-4">Project Overview</span>
+              <span className="section-label ml-4">Over het project</span>
               <h2 className="heading-lg mt-4">Over ARISE</h2>
             </motion.div>
             <motion.div className="lg:col-span-7 space-y-6" {...fadeUp} transition={{ duration: 0.6, delay: 0.15 }}>
@@ -93,160 +120,273 @@ const CaseArise = () => {
       {/* About Diopsis */}
       <section className="py-24 border-t border-border">
         <div className="swiss-container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <motion.div className="lg:col-span-5" {...fadeUp}>
               <span className="section-number">02</span>
               <span className="section-label ml-4">Diopsis</span>
               <h2 className="heading-lg mt-4">Over Diopsis</h2>
+              <div className="mt-6 space-y-4">
+                <p className="body-md text-muted-foreground">
+                  Diopsis is een camera die speciaal is ontworpen om insecten te fotograferen en vervolgens soortenherkenning uit te voeren op basis van deze foto's.
+                </p>
+                <p className="body-md text-muted-foreground">
+                  Voor dit systeem bestaat al een bestaande workflow — van het nemen van de foto door de camera, tot een systeem waar experts de foto's kunnen annoteren en een AI-model dat automatisch soorten herkent, tot een rapport voor de eindgebruiker.
+                </p>
+                <p className="body-md text-muted-foreground">
+                  Alleen is er momenteel geen plek waar deze data verblijft of waar gebruikers ermee kunnen interageren. Dit user portal wordt onderdeel van het grotere ARISE-platform.
+                </p>
+              </div>
             </motion.div>
-            <motion.div className="lg:col-span-7 space-y-6" {...fadeUp} transition={{ duration: 0.6, delay: 0.15 }}>
-              <p className="body-lg text-muted-foreground">
-                Diopsis is een camera die speciaal is ontworpen om insecten te fotograferen en vervolgens soortenherkenning uit te voeren op basis van deze foto's.
-              </p>
-              <p className="body-md text-muted-foreground">
-                Voor dit systeem bestaat al een bestaande workflow — van het nemen van de foto door de camera, tot een systeem waar experts de foto's kunnen annoteren en een Artificial Intelligence-model dat automatisch soorten herkent, tot een rapport voor de eindgebruiker.
-              </p>
-              <p className="body-md text-muted-foreground">
-                Alleen is er momenteel geen plek waar deze data verblijft of waar gebruikers ermee kunnen interageren. Dit user portal wordt onderdeel van het grotere ARISE-platform.
-              </p>
+            <motion.div className="lg:col-span-7" {...fadeUp} transition={{ duration: 0.6, delay: 0.2 }}>
+              <img src={ariseDiopsis} alt="Diopsis camera in het veld" className="w-full max-w-md mx-auto h-auto rounded-sm" />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Design Question */}
+      {/* Data Flow */}
+      <motion.section className="py-16" {...fadeUp}>
+        <div className="swiss-container">
+          <img src={ariseDataFlow} alt="ARISE data flow diagram" className="w-full h-auto rounded-sm" />
+        </div>
+      </motion.section>
+
+      {/* Process */}
       <section className="py-24 border-t border-border">
         <div className="swiss-container">
-          <motion.div {...fadeUp} className="max-w-3xl mx-auto text-center">
+          <motion.div {...fadeUp} className="mb-16 text-center">
             <span className="section-number">03</span>
-            <span className="section-label ml-4">Designvraag</span>
-            <h2 className="heading-lg mt-4 mb-8">
-              Hoe ontwerpen we een intuïtief platform dat complexe biodiversiteitsdata toegankelijk maakt?
-            </h2>
-            <p className="body-lg text-muted-foreground">
-              De uitdaging: wetenschappelijke datasets vertalen naar een gebruiksvriendelijke interface voor zowel ecologen als data-analisten, zonder aan diepte in te boeten.
-            </p>
+            <span className="section-label ml-4">Aanpak</span>
+            <h2 className="heading-lg mt-4">Ons UX Proces</h2>
+          </motion.div>
+          <motion.div {...fadeUp}>
+            <img src={ariseProcess} alt="UX Process - Discover, Define, Ideate, Design, Testing" className="w-full h-auto" />
           </motion.div>
         </div>
       </section>
 
-      {/* UX Process */}
-      <section className="py-24 border-t border-border">
+      {/* Timeline */}
+      <motion.section className="py-16" {...fadeUp}>
         <div className="swiss-container">
-          <motion.div {...fadeUp} className="mb-16">
-            <span className="section-number">04</span>
-            <span className="section-label ml-4">UX Proces</span>
-            <h2 className="heading-lg mt-4">Onze aanpak</h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Search,
-                phase: "Discovery",
-                title: "Onderzoek & Inzichten",
-                desc: "Stakeholder interviews, desk research en analyse van bestaande workflows om de behoeften van ecologen en onderzoekers in kaart te brengen.",
-              },
-              {
-                icon: Database,
-                phase: "Define",
-                title: "Probleem Definiëren",
-                desc: "Persona's, user journey maps en een helder gedefinieerde designvraag die richting geeft aan het ontwerpproces.",
-              },
-              {
-                icon: Brain,
-                phase: "Ideate",
-                title: "Conceptontwikkeling",
-                desc: "Brainstormsessies, wireframes en informatiestructuur voor het complexe dataplatform met meerdere gebruikersrollen.",
-              },
-              {
-                icon: Microscope,
-                phase: "Design",
-                title: "Prototype & Test",
-                desc: "High-fidelity prototype in Figma, gevolgd door usability testing met echte ecologen en data-explorers.",
-              },
-            ].map((item) => (
-              <motion.div key={item.phase} className="border border-border rounded-sm p-6" {...fadeUp}>
-                <item.icon className="w-8 h-8 text-accent mb-4" />
-                <span className="section-label block mb-2">{item.phase}</span>
-                <h3 className="font-display font-bold text-lg text-foreground mb-3">{item.title}</h3>
-                <p className="text-sm text-muted-foreground font-body">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+          <img src={ariseTimeline} alt="Project timeline - 20 weeks, 8 phases" className="w-full h-auto rounded-sm" />
         </div>
-      </section>
+      </motion.section>
 
-      {/* User Groups */}
-      <section className="py-24 border-t border-border">
+      {/* Discover Fase */}
+      <motion.section {...fadeUp}>
+        <img src={ariseDiscover} alt="Discover Fase - Get to know the context" className="w-full h-auto" />
+      </motion.section>
+
+      {/* Lean Canvas */}
+      <section className="py-24">
         <div className="swiss-container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             <motion.div className="lg:col-span-5" {...fadeUp}>
-              <span className="section-number">05</span>
-              <span className="section-label ml-4">Gebruikersgroepen</span>
-              <h2 className="heading-lg mt-4">Twee kerngebruikers</h2>
+              <span className="section-number">04</span>
+              <span className="section-label ml-4">Discovery</span>
+              <h2 className="heading-lg mt-4">Lean Canvas Model</h2>
+              <p className="body-md text-muted-foreground mt-4">
+                In de Lean Canvas bespraken we de belangrijkste doelstellingen en gebruikersdoelen voor dit project. Wat zijn de doelen en wanneer bereiken we ze?
+              </p>
+              <div className="mt-8 bg-surface border border-border rounded-sm p-6">
+                <p className="body-md text-muted-foreground italic">
+                  "We as ARISE want to become the Spotify and Google Analytics for biodiversity in The Netherlands."
+                </p>
+              </div>
             </motion.div>
             <motion.div className="lg:col-span-7" {...fadeUp} transition={{ duration: 0.6, delay: 0.15 }}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="bg-surface rounded-sm p-6 border border-border">
-                  <Users className="w-8 h-8 text-accent mb-3" />
-                  <h3 className="font-display font-bold text-foreground mb-2">Ecologen</h3>
-                  <p className="text-sm text-muted-foreground font-body">
-                    Veldonderzoekers die biodiversiteitsdata verzamelen, soortobservaties vastleggen en rapporten genereren voor natuurbeheer en beleid.
-                  </p>
-                </div>
-                <div className="bg-surface rounded-sm p-6 border border-border">
-                  <Database className="w-8 h-8 text-accent mb-3" />
-                  <h3 className="font-display font-bold text-foreground mb-2">Data Explorers</h3>
-                  <p className="text-sm text-muted-foreground font-body">
-                    Onderzoekers en analisten die datasets doorzoeken, analyseren en nieuwe verbanden ontdekken tussen soorten en ecosystemen.
-                  </p>
-                </div>
-              </div>
+              <img src={ariseLeanCanvas} alt="Lean Canvas Model Template" className="w-full h-auto rounded-sm" />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Key Features */}
+      {/* User Personas */}
       <section className="py-24 border-t border-border">
         <div className="swiss-container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            <motion.div className="lg:col-span-5" {...fadeUp}>
-              <span className="section-number">06</span>
-              <span className="section-label ml-4">Prototype</span>
-              <h2 className="heading-lg mt-4">Kernfunctionaliteiten</h2>
-            </motion.div>
-            <motion.div className="lg:col-span-7 space-y-6" {...fadeUp} transition={{ duration: 0.6, delay: 0.15 }}>
-              <div className="space-y-4">
-                {[
-                  { icon: Search, title: "Search & Discover", desc: "Krachtige zoekfunctionaliteit om soorten te vinden, analyseren en ontdekken met geavanceerde filters." },
-                  { icon: Camera, title: "Diopsis Integratie", desc: "Direct inzicht in camerabeelden en AI-herkenningsresultaten, met de mogelijkheid om annotaties toe te voegen." },
-                  { icon: Database, title: "Dataset Explorer", desc: "Interactieve verkenning van biodiversiteitsdatasets met visualisaties, kaarten en statistieken." },
-                  { icon: Microscope, title: "Soortdetailpagina's", desc: "Uitgebreide profielen per soort met foto's, geluiden, verspreidingskaarten en taxonomische informatie." },
-                ].map((feature) => (
-                  <div key={feature.title} className="flex gap-4 items-start">
-                    <feature.icon className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-display font-bold text-foreground mb-1">{feature.title}</h4>
-                      <p className="text-sm text-muted-foreground font-body">{feature.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+          <motion.div {...fadeUp} className="mb-12">
+            <span className="section-number">05</span>
+            <span className="section-label ml-4">Gebruikersgroepen</span>
+            <h2 className="heading-lg mt-4">Twee kerngebruikers</h2>
+          </motion.div>
+          <motion.div {...fadeUp}>
+            <img src={arisePersonas} alt="Ecologist vs Data Explorer personas" className="w-full h-auto rounded-sm" />
+          </motion.div>
         </div>
       </section>
 
-      {/* Results */}
+      {/* Empathy Map */}
+      <section className="py-24 border-t border-border">
+        <div className="swiss-container">
+          <motion.div {...fadeUp} className="mb-12">
+            <span className="section-number">06</span>
+            <span className="section-label ml-4">Empathy Map</span>
+            <h2 className="heading-lg mt-4">Gebruiker begrijpen</h2>
+            <p className="body-md text-muted-foreground mt-4 max-w-2xl">
+              Om de behoeften van onze gebruikers beter te begrijpen, hebben we een empathy map gemaakt op basis van interviews met ecologen en onderzoekers.
+            </p>
+          </motion.div>
+          <motion.div {...fadeUp}>
+            <img src={ariseEmpathyMap} alt="Empathy Map - Says, Thinks, Does, Feels, Pains, Gains" className="w-full h-auto rounded-sm" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Hypotheses */}
+      <section className="py-24 border-t border-border">
+        <div className="swiss-container">
+          <motion.div {...fadeUp} className="mb-12">
+            <span className="section-number">07</span>
+            <span className="section-label ml-4">Hypotheses</span>
+            <h2 className="heading-lg mt-4">Onderzoekshypotheses</h2>
+            <p className="body-md text-muted-foreground mt-4 max-w-2xl">
+              Op basis van ons gebruikersonderzoek formuleerden we zes kernhypotheses rondom filtersystemen, data-toegang, customisatie, vergelijking, visualisatie en rapportage.
+            </p>
+          </motion.div>
+          <motion.div {...fadeUp}>
+            <img src={ariseHypotheses} alt="Research hypotheses cards" className="w-full h-auto rounded-sm" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Card Sorting */}
+      <section className="py-24 border-t border-border">
+        <div className="swiss-container">
+          <motion.div {...fadeUp} className="mb-12">
+            <span className="section-number">08</span>
+            <span className="section-label ml-4">Card Sorting</span>
+            <h2 className="heading-lg mt-4">Gebruikersbehoeften in kaart</h2>
+            <p className="body-md text-muted-foreground mt-4 max-w-2xl">
+              Via card sorting brachten we de belangrijkste functionaliteiten in kaart: zoeken, data bekijken, vergelijken, downloaden en uploaden.
+            </p>
+          </motion.div>
+          <motion.div {...fadeUp}>
+            <img src={ariseCardSorting} alt="Card sorting results" className="w-full h-auto rounded-sm" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Feature Prioritization */}
+      <section className="py-24 border-t border-border">
+        <div className="swiss-container">
+          <motion.div {...fadeUp} className="mb-12">
+            <span className="section-number">09</span>
+            <span className="section-label ml-4">Prioritering</span>
+            <h2 className="heading-lg mt-4">Feature Prioritization</h2>
+          </motion.div>
+          <motion.div {...fadeUp}>
+            <img src={ariseFeatures} alt="Feature prioritization table" className="w-full h-auto rounded-sm" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Ideation Fase */}
+      <motion.section {...fadeUp}>
+        <img src={ariseIdeation} alt="Ideation Fase - Get a better idea of what the design" className="w-full h-auto" />
+      </motion.section>
+
+      {/* User Flow */}
+      <section className="py-24">
+        <div className="swiss-container">
+          <motion.div {...fadeUp} className="mb-12">
+            <span className="section-number">10</span>
+            <span className="section-label ml-4">User Flow</span>
+            <h2 className="heading-lg mt-4">Gebruikersstromen</h2>
+            <p className="body-md text-muted-foreground mt-4 max-w-2xl">
+              We ontwierpen gedetailleerde user flows voor beide gebruikersgroepen — de Data Explorer en de Ecoloog met Diopsis camera.
+            </p>
+          </motion.div>
+          <motion.div {...fadeUp} className="mb-12">
+            <img src={ariseUserFlow} alt="User flow diagram iteration 1" className="w-full h-auto rounded-sm" />
+          </motion.div>
+          <motion.div {...fadeUp}>
+            <img src={ariseUserFlow2} alt="User flow diagram iteration 2" className="w-full h-auto rounded-sm" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Design Fase */}
+      <motion.section {...fadeUp}>
+        <img src={ariseDesign} alt="Design Fase - Prototyping" className="w-full h-auto" />
+      </motion.section>
+
+      {/* Wireframes */}
+      <section className="py-24">
+        <div className="swiss-container">
+          <motion.div {...fadeUp} className="mb-12">
+            <span className="section-number">11</span>
+            <span className="section-label ml-4">Wireframes</span>
+            <h2 className="heading-lg mt-4">Low-fidelity Wireframes</h2>
+            <p className="body-md text-muted-foreground mt-4 max-w-2xl">
+              We begonnen met low-fidelity wireframes om de informatiestructuur en layout te valideren voordat we naar high-fidelity designs gingen.
+            </p>
+          </motion.div>
+          <motion.div {...fadeUp}>
+            <img src={ariseWireframes} alt="Low-fidelity wireframes" className="w-full h-auto rounded-sm" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* High-fidelity Designs */}
+      <section className="py-24 border-t border-border">
+        <div className="swiss-container">
+          <motion.div {...fadeUp} className="mb-12">
+            <span className="section-number">12</span>
+            <span className="section-label ml-4">Hi-Fi Design</span>
+            <h2 className="heading-lg mt-4">High-fidelity Prototype</h2>
+            <p className="body-md text-muted-foreground mt-4 max-w-2xl">
+              De wireframes werden vertaald naar een volledig high-fidelity prototype met zoekfunctionaliteit, data-browsing, species-detail pagina's en een dashboard.
+            </p>
+          </motion.div>
+          <motion.div {...fadeUp} className="mb-12">
+            <img src={ariseHifi} alt="High-fidelity design screens" className="w-full h-auto rounded-sm" />
+          </motion.div>
+          <motion.div {...fadeUp}>
+            <img src={arisePrototype} alt="Prototype screens - dashboard and database" className="w-full h-auto rounded-sm" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Full Screens */}
+      <motion.section {...fadeUp} className="py-16">
+        <div className="swiss-container">
+          <img src={ariseScreens} alt="Complete UI screens overview" className="w-full h-auto rounded-sm" />
+        </div>
+      </motion.section>
+
+      {/* Testing Fase */}
+      <motion.section {...fadeUp}>
+        <img src={ariseTesting} alt="Testing Fase - Get feedback and insights from end users" className="w-full h-auto" />
+      </motion.section>
+
+      {/* Test Results */}
+      <section className="py-24">
+        <div className="swiss-container">
+          <motion.div {...fadeUp} className="mb-12">
+            <span className="section-number">13</span>
+            <span className="section-label ml-4">Resultaten</span>
+            <h2 className="heading-lg mt-4">Test Resultaten</h2>
+            <p className="body-md text-muted-foreground mt-4 max-w-2xl">
+              We testten vier kerngebieden met echte gebruikers: de landing page, de filter feature, de compare feature en data visualisatie.
+            </p>
+          </motion.div>
+          <motion.div {...fadeUp} className="mb-12">
+            <img src={ariseTestResults} alt="Test results overview" className="w-full h-auto rounded-sm" />
+          </motion.div>
+          <motion.div {...fadeUp}>
+            <img src={ariseFeedback} alt="User feedback and recommendations" className="w-full h-auto rounded-sm" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Conclusion */}
       <section className="py-24 border-t border-border">
         <div className="swiss-container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             <motion.div className="lg:col-span-5" {...fadeUp}>
-              <span className="section-number">07</span>
-              <span className="section-label ml-4">Resultaat</span>
-              <h2 className="heading-lg mt-4">Een werkend prototype</h2>
+              <span className="section-number">14</span>
+              <span className="section-label ml-4">Conclusie</span>
+              <h2 className="heading-lg mt-4">Het resultaat</h2>
             </motion.div>
             <motion.div className="lg:col-span-7 space-y-6" {...fadeUp} transition={{ duration: 0.6, delay: 0.15 }}>
               <p className="body-lg text-muted-foreground">
