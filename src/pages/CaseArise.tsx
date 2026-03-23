@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/hooks/useLanguage";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ariseHero from "@/assets/arise-hero.png";
 import ariseRole from "@/assets/arise-351.png";
 import ariseProcess from "@/assets/arise-352.png";
 import ariseTimeline from "@/assets/arise-353.png";
