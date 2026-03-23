@@ -131,6 +131,7 @@ const CaseSlider = () => {
             </motion.div>
           ))}
         </div>
+        </div>
       </div>
 
       <div className="swiss-container mt-12 sm:hidden">
