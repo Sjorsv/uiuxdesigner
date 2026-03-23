@@ -89,13 +89,14 @@ const CaseSlider = () => {
         </div>
       </div>
 
-      <div className="overflow-hidden px-6 md:px-12 lg:px-16 cursor-grab active:cursor-grabbing relative" ref={emblaRef}>
+      <div className="relative">
         <div ref={swipeHintRef} className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none transition-opacity duration-300">
           <motion.div className="flex items-center gap-2 bg-primary/90 text-primary-foreground px-5 py-3 rounded-full shadow-lg" animate={{ x: [0, 40, 0] }} transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}>
             <Hand className="w-5 h-5" />
             <span className="text-sm font-medium">{t("cases.swipe")}</span>
           </motion.div>
         </div>
+        <div className="overflow-hidden px-6 md:px-12 lg:px-16 cursor-grab active:cursor-grabbing" ref={emblaRef}>
         <div className="flex gap-8 select-none">
           {cases.map((project, index) => (
             <motion.div
