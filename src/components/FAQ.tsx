@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
   Accordion,
   AccordionContent,
@@ -6,50 +7,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const faqs = [
-  {
-    question: "Wat kost een nieuwe website?",
-    answer:
-      "De prijs van een website hangt af van de omvang en complexiteit van het project. Kleinere websites starten meestal rond €1200–€2500, terwijl grotere maatwerk projecten hoger kunnen liggen. Na een korte kennismaking kan ik een duidelijke prijsindicatie geven.",
-  },
-  {
-    question: "Hoe lang duurt het om een website te laten maken?",
-    answer:
-      "De meeste websites worden binnen 3 tot 6 weken ontworpen en gebouwd. Dit hangt af van de omvang van het project en hoe snel content zoals teksten en beelden beschikbaar zijn.",
-  },
-  {
-    question: "Werk je alleen met bedrijven uit Nederland?",
-    answer:
-      "Nee. Hoewel ik gevestigd ben in Nederland werk ik ook met bedrijven uit andere landen. De meeste communicatie verloopt online, waardoor samenwerken op afstand eenvoudig is.",
-  },
-  {
-    question: "In welk systeem bouwen jullie websites?",
-    answer:
-      "De meeste websites ontwikkelen we als custom WordPress websites. Zo krijgen bedrijven een snelle, schaalbare website die eenvoudig zelf te beheren is. Voor specifieke projecten zijn ook maatwerk oplossingen mogelijk.",
-  },
-  {
-    question: "Kan ik mijn website later zelf aanpassen?",
-    answer:
-      "Ja. Websites worden zo opgezet dat je eenvoudig teksten, afbeeldingen en pagina's kunt aanpassen zonder technische kennis.",
-  },
-  {
-    question: "Kun je ook mijn bestaande website verbeteren?",
-    answer:
-      "Ja. Naast het bouwen van nieuwe websites help ik ook bedrijven met het redesign of verbeteren van bestaande websites, bijvoorbeeld op het gebied van structuur, design of conversie.",
-  },
-  {
-    question: "Help je ook met branding, fotografie of video?",
-    answer:
-      "Ja. Naast webdesign kan ik ook helpen met visuele identiteit, fotografie en video zodat je website een sterke en consistente uitstraling krijgt.",
-  },
-  {
-    question: "Hoe start een samenwerking?",
-    answer:
-      "Het proces begint met een korte kennismaking waarin we jouw bedrijf, doelen en wensen bespreken. Daarna ontvang je een voorstel met planning en prijs. Na akkoord start het ontwerp van de website.",
-  },
-];
-
 const FAQ = () => {
+  const { t } = useTranslation();
+  const faqs = t("faq.items", { returnObjects: true }) as { question: string; answer: string }[];
+
   return (
     <section className="py-32 border-t border-border" id="faq">
       <div className="swiss-container">
@@ -60,14 +21,12 @@ const FAQ = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="section-number">08</span>
-            <span className="section-label ml-4">FAQ</span>
+            <span className="section-number">{t("faq.section_number")}</span>
+            <span className="section-label ml-4">{t("faq.section_label")}</span>
             <h2 className="heading-lg mt-4 mb-8">
-              Veelgestelde<br />vragen
+              {t("faq.title_line1")}<br />{t("faq.title_line2")}
             </h2>
-            <p className="body-md max-w-md">
-              Antwoorden op de meest gestelde vragen over samenwerken, kosten en het proces.
-            </p>
+            <p className="body-md max-w-md">{t("faq.description")}</p>
           </motion.div>
 
           <motion.div

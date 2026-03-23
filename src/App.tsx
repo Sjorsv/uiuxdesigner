@@ -16,8 +16,21 @@ import CaseArise from "./pages/CaseArise";
 import CaseJawel from "./pages/CaseJawel";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
+import LanguageSync from "./components/LanguageSync";
 
 const queryClient = new QueryClient();
+
+const caseRoutes = [
+  { path: "case/gmt-equipment", element: <CaseGmt /> },
+  { path: "case/maxled", element: <CaseMaxled /> },
+  { path: "case/bouwmeester", element: <CaseBouwmeester /> },
+  { path: "case/lohues", element: <CaseLohues /> },
+  { path: "case/theoriedoen", element: <CaseTheoriedoen /> },
+  { path: "case/batterij", element: <CaseBatterij /> },
+  { path: "case/soortenregister", element: <CaseSoortenregister /> },
+  { path: "case/jawel", element: <CaseJawel /> },
+  { path: "case/arise", element: <CaseArise /> },
+];
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -26,18 +39,22 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <LanguageSync />
         <Routes>
+          {/* Dutch routes (no prefix) */}
           <Route path="/" element={<Index />} />
           <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/case/gmt-equipment" element={<CaseGmt />} />
-          <Route path="/case/maxled" element={<CaseMaxled />} />
-          <Route path="/case/bouwmeester" element={<CaseBouwmeester />} />
-          <Route path="/case/lohues" element={<CaseLohues />} />
-          <Route path="/case/theoriedoen" element={<CaseTheoriedoen />} />
-          <Route path="/case/batterij" element={<CaseBatterij />} />
-          <Route path="/case/soortenregister" element={<CaseSoortenregister />} />
-          <Route path="/case/jawel" element={<CaseJawel />} />
-          <Route path="/case/arise" element={<CaseArise />} />
+          {caseRoutes.map((r) => (
+            <Route key={r.path} path={`/${r.path}`} element={r.element} />
+          ))}
+
+          {/* English routes (/en prefix) */}
+          <Route path="/en" element={<Index />} />
+          <Route path="/en/portfolio" element={<Portfolio />} />
+          {caseRoutes.map((r) => (
+            <Route key={`en-${r.path}`} path={`/en/${r.path}`} element={r.element} />
+          ))}
+
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

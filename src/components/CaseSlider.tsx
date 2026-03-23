@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Hand } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/hooks/useLanguage";
 import CursorBadge from "./CursorBadge";
 import caseGmt from "@/assets/case-gmt.png";
 import caseMaxled from "@/assets/case-maxled.png";
@@ -14,76 +16,26 @@ import caseSoortenregister from "@/assets/case-soortenregister.png";
 import caseBiodiversity from "@/assets/case-biodiversity.png";
 import caseJawel from "@/assets/case-jawel.png";
 
-const cases = [
-  {
-    title: "GMT Equipment",
-    description: "Website redesign voor GMT Equipment, fabrikant van innovatieve zaag- en grijpsystemen. De focus lag op structuur, conversie en het versterken van hun technische merkidentiteit.",
-    industry: "Industrial",
-    image: caseGmt,
-    slug: "/case/gmt-equipment",
-  },
-  {
-    title: "MaxLED",
-    description: "E-commerce platform redesign voor de #1 in verhuur en verkoop van vaste en mobiele ledschermen. Focus op productpresentatie en offerte-aanvragen.",
-    industry: "E-commerce",
-    image: caseMaxled,
-    slug: "/case/maxled",
-  },
-  {
-    title: "Bouwmeester",
-    description: "Professionele website voor een loodgieter- en installatiebedrijf in de regio Zwolle. Focus op dienstverlening, vertrouwen en lokale vindbaarheid.",
-    industry: "Bouw & Installatie",
-    image: caseBouwmeester,
-    slug: "/case/bouwmeester",
-  },
-  {
-    title: "Lohues Installatie Techniek",
-    description: "Website voor een familiebedrijf in verduurzaming. Focus op huisinstallaties, zonnepanelen en duurzame energieoplossingen.",
-    industry: "Energie & Duurzaamheid",
-    image: caseLohues,
-  },
-  {
-    title: "Batterij-recyclen.nl",
-    description: "Platform voor verantwoord batterijbeheer en recycling. Focus op de transitie naar een groene economie en inzamelpunten.",
-    industry: "Duurzaamheid",
-    image: caseBatterij,
-    slug: "/case/batterij",
-  },
-  {
-    title: "Theoriedoen.be",
-    description: "Online platform voor autotheorie-examens in België. Focus op conversie, gebruiksvriendelijkheid en hoge slagingspercentages.",
-    industry: "EdTech",
-    image: caseTheoriedoen,
-  },
-  {
-    title: "Nederlands Soortenregister",
-    description: "Centrale database voor Nederlandse biodiversiteit met gestandaardiseerde referentiedata, foto's en geluiden.",
-    industry: "Overheid & Wetenschap",
-    image: caseSoortenregister,
-    slug: "/case/soortenregister",
-  },
-  {
-    title: "ARISE Biodiversity",
-    description: "UX case study en prototype voor het ARISE-platform — biodiversiteitsmonitoring met AI-gestuurde soortenherkenning.",
-    industry: "Wetenschap",
-    image: caseBiodiversity,
-    slug: "/case/arise",
-  },
-  {
-    title: "Jawel Infra",
-    description: "Krachtige website voor een infrastructuurbedrijf. Focus op betrouwbaarheid, diensten en projectpresentatie.",
-    industry: "Infrastructuur",
-    image: caseJawel,
-    slug: "/case/jawel",
-  },
-];
-
 const CaseSlider = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { localePath } = useLanguage();
   const [hovering, setHovering] = useState(false);
   const [dragStartPos, setDragStartPos] = useState({ x: 0, y: 0 });
   const [showSwipeHint, setShowSwipeHint] = useState(true);
   
+  const cases = [
+    { key: "gmt", image: caseGmt, slug: "/case/gmt-equipment" },
+    { key: "maxled", image: caseMaxled, slug: "/case/maxled" },
+    { key: "bouwmeester", image: caseBouwmeester, slug: "/case/bouwmeester" },
+    { key: "lohues", image: caseLohues, slug: "" },
+    { key: "batterij", image: caseBatterij, slug: "/case/batterij" },
+    { key: "theoriedoen", image: caseTheoriedoen, slug: "" },
+    { key: "soortenregister", image: caseSoortenregister, slug: "/case/soortenregister" },
+    { key: "arise", image: caseBiodiversity, slug: "/case/arise" },
+    { key: "jawel", image: caseJawel, slug: "/case/jawel" },
+  ];
+
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     dragFree: true,
@@ -104,11 +56,8 @@ const CaseSlider = () => {
     emblaApi.on("select", updateNavigationState);
     emblaApi.on("reInit", updateNavigationState);
     
-    // Hide swipe hint on first scroll
     const hideHint = () => setShowSwipeHint(false);
     emblaApi.on("scroll", hideHint);
-    
-    // Auto-hide after 3 seconds
     const timer = setTimeout(() => setShowSwipeHint(false), 3500);
     
     return () => {
@@ -119,24 +68,18 @@ const CaseSlider = () => {
     };
   }, [emblaApi, updateNavigationState]);
 
-  const scroll = (direction: "left" | "right") => {
-    if (!emblaApi) return;
-    if (direction === "left") emblaApi.scrollPrev();
-    else emblaApi.scrollNext();
-  };
-
   return (
     <section className="pt-16 pb-32 relative" id="cases">
-      <CursorBadge text={"Bekijk\ncase"} active={hovering} />
+      <CursorBadge text={t("cases.cursor_badge")} active={hovering} />
       <div className="swiss-container mb-12">
         <div className="flex items-end justify-between">
           <div>
-            <span className="section-number">01</span>
-            <span className="section-label ml-4">Featured Cases</span>
-            <h2 className="heading-lg mt-4">Onze cases</h2>
+            <span className="section-number">{t("cases.section_number")}</span>
+            <span className="section-label ml-4">{t("cases.section_label")}</span>
+            <h2 className="heading-lg mt-4">{t("cases.title")}</h2>
           </div>
-          <a href="/portfolio" className="btn-outline hidden sm:inline-flex">
-            Bekijk alle projecten
+          <a href={localePath("/portfolio")} className="btn-outline hidden sm:inline-flex">
+            {t("cases.view_all")}
           </a>
         </div>
       </div>
@@ -144,20 +87,10 @@ const CaseSlider = () => {
       <div className="overflow-hidden px-6 md:px-12 lg:px-16 cursor-grab active:cursor-grabbing relative" ref={emblaRef}>
         <AnimatePresence>
           {showSwipeHint && (
-            <motion.div
-              className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div
-                className="flex items-center gap-2 bg-primary/90 text-primary-foreground px-5 py-3 rounded-full shadow-lg"
-                animate={{ x: [0, 40, 0] }}
-                transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-              >
+            <motion.div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
+              <motion.div className="flex items-center gap-2 bg-primary/90 text-primary-foreground px-5 py-3 rounded-full shadow-lg" animate={{ x: [0, 40, 0] }} transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}>
                 <Hand className="w-5 h-5" />
-                <span className="text-sm font-medium">Swipe</span>
+                <span className="text-sm font-medium">{t("cases.swipe")}</span>
               </motion.div>
             </motion.div>
           )}
@@ -165,7 +98,7 @@ const CaseSlider = () => {
         <div className="flex gap-8 select-none">
           {cases.map((project, index) => (
             <motion.div
-              key={project.title}
+              key={project.key}
               className="flex-[0_0_85vw] sm:flex-[0_0_70vw] md:flex-[0_0_55vw] lg:flex-[0_0_45vw] group cursor-none"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -177,25 +110,20 @@ const CaseSlider = () => {
               onPointerUp={(e) => {
                 const dist = Math.abs(e.clientX - dragStartPos.x) + Math.abs(e.clientY - dragStartPos.y);
                 if (dist < 5 && project.slug) {
-                  navigate(project.slug);
+                  navigate(localePath(project.slug));
                 }
               }}
             >
               <div className="bg-gradient-to-br from-surface to-muted/30 rounded-sm overflow-hidden mb-6 relative">
                 <div className="overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={`${project.title} website mockup`}
-                    draggable={false}
-                    className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
-                  />
+                  <img src={project.image} alt={`${t(`cases.${project.key}.title`)} website mockup`} draggable={false} className="w-full h-auto transition-transform duration-700 group-hover:scale-105" />
                 </div>
               </div>
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <span className="section-label mb-2 block">{project.industry}</span>
-                  <h3 className="font-display font-bold text-xl md:text-2xl text-foreground mb-2">{project.title}</h3>
-                  <p className="body-md max-w-md">{project.description}</p>
+                  <span className="section-label mb-2 block">{t(`cases.${project.key}.industry`)}</span>
+                  <h3 className="font-display font-bold text-xl md:text-2xl text-foreground mb-2">{t(`cases.${project.key}.title`)}</h3>
+                  <p className="body-md max-w-md">{t(`cases.${project.key}.description`)}</p>
                 </div>
               </div>
             </motion.div>
@@ -204,11 +132,10 @@ const CaseSlider = () => {
       </div>
 
       <div className="swiss-container mt-12 sm:hidden">
-        <a href="/portfolio" className="btn-outline">
-          Bekijk alle projecten
+        <a href={localePath("/portfolio")} className="btn-outline">
+          {t("cases.view_all")}
         </a>
       </div>
-      
     </section>
   );
 };

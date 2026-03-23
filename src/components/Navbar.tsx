@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
+  const { lang, localePath, switchLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -14,22 +18,31 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Get the base path (without /en prefix)
+  const getBasePath = () => {
+    const path = location.pathname;
+    if (path.startsWith("/en")) {
+      return path.slice(3) || "/";
+    }
+    return path;
+  };
+
   const handleHashLink = (hash: string) => {
     setMenuOpen(false);
-    if (location.pathname === "/") {
-      // Already on homepage, just scroll
+    const basePath = getBasePath();
+    const homePath = lang === "en" ? "/en" : "/";
+    if (basePath === "/") {
       const el = document.querySelector(hash);
       if (el) el.scrollIntoView({ behavior: "smooth" });
     } else {
-      // Navigate to homepage with hash
-      navigate("/" + hash);
+      navigate(homePath + hash);
     }
   };
 
   const navItems = [
-    { label: "Cases", href: "/portfolio" },
-    { label: "Diensten", hash: "#services" },
-    { label: "Over", hash: "#about" },
+    { label: t("nav.cases"), href: localePath("/portfolio") },
+    { label: t("nav.services"), hash: "#services" },
+    { label: t("nav.about"), hash: "#about" },
   ];
 
   return (
@@ -39,7 +52,7 @@ const Navbar = () => {
       }`}
     >
       <div className="swiss-container flex items-center justify-between h-20">
-        <a href="/" className="font-display font-bold text-lg text-foreground tracking-tight">
+        <a href={localePath("/")} className="font-display font-bold text-lg text-foreground tracking-tight">
           uiuxdesigner.nl
         </a>
 
@@ -64,8 +77,30 @@ const Navbar = () => {
               </a>
             )
           )}
+
+          {/* Language switcher */}
+          <div className="flex items-center gap-1 text-sm font-body">
+            <button
+              onClick={() => switchLanguage("nl")}
+              className={`px-2 py-1 rounded transition-colors duration-200 ${
+                lang === "nl" ? "text-foreground font-bold" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              NL
+            </button>
+            <span className="text-border">/</span>
+            <button
+              onClick={() => switchLanguage("en")}
+              className={`px-2 py-1 rounded transition-colors duration-200 ${
+                lang === "en" ? "text-foreground font-bold" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              EN
+            </button>
+          </div>
+
           <button onClick={() => handleHashLink("#contact")} className="btn-primary text-xs py-3 px-6">
-            Contact
+            {t("nav.contact")}
           </button>
         </div>
 
@@ -111,8 +146,26 @@ const Navbar = () => {
                   </a>
                 )
               )}
+
+              {/* Mobile language switcher */}
+              <div className="flex items-center gap-3 text-base font-body">
+                <button
+                  onClick={() => { switchLanguage("nl"); setMenuOpen(false); }}
+                  className={lang === "nl" ? "text-foreground font-bold" : "text-muted-foreground"}
+                >
+                  NL
+                </button>
+                <span className="text-border">/</span>
+                <button
+                  onClick={() => { switchLanguage("en"); setMenuOpen(false); }}
+                  className={lang === "en" ? "text-foreground font-bold" : "text-muted-foreground"}
+                >
+                  EN
+                </button>
+              </div>
+
               <button onClick={() => handleHashLink("#contact")} className="btn-primary text-xs py-3 px-6 w-fit">
-                Contact
+                {t("nav.contact")}
               </button>
             </div>
           </motion.div>

@@ -1,30 +1,23 @@
 import { motion } from "framer-motion";
-
-
-const services = [
-  { title: "Website Design", description: "Volledig op maat ontworpen websites die jouw bedrijf versterken en bezoekers begeleiden naar actie." },
-  { title: "Website Development", description: "Technische realisatie van snelle, schaalbare websites in WordPress, Webflow, Framer of maatwerk code." },
-  { title: "Website Redesign", description: "Bestaande websites moderniseren met een sterkere structuur, betere gebruikerservaring en hogere conversie." },
-  { title: "UX & Conversion", description: "Structuur, navigatie en gebruikerservaring optimaliseren zodat bezoekers sneller vinden wat ze zoeken en eerder contact opnemen." },
-  { title: "Branding & Visual Content", description: "Het ontwikkelen van een sterke visuele identiteit en het creëren van fotografie of video die zorgt voor herkenbaarheid en een consistente uitstraling online." },
-];
+import { useTranslation } from "react-i18next";
 
 const Services = () => {
+  const { t } = useTranslation();
+  const items = t("services.items", { returnObjects: true }) as { title: string; description: string }[];
+
   return (
     <section className="py-32 border-t border-border" id="services">
       <div className="swiss-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           <div className="lg:col-span-4">
-            <span className="section-number">03</span>
-            <span className="section-label ml-4">Diensten</span>
-            <h2 className="heading-lg mt-4 mb-8">Expertises</h2>
-            <p className="body-md max-w-sm">
-              UIUXDESIGNER.NL helpt bedrijven moderne websites te creëren die helder communiceren en bezoekers omzetten in klanten.
-            </p>
+            <span className="section-number">{t("services.section_number")}</span>
+            <span className="section-label ml-4">{t("services.section_label")}</span>
+            <h2 className="heading-lg mt-4 mb-8">{t("services.title")}</h2>
+            <p className="body-md max-w-sm">{t("services.description")}</p>
           </div>
 
           <div className="lg:col-span-8">
-            {services.map((service, index) => (
+            {items.map((service, index) => (
               <motion.div
                 key={service.title}
                 className="border-t border-border py-8 group cursor-pointer transition-colors duration-300 hover:bg-surface/50 -mx-6 px-6 rounded-xl"
