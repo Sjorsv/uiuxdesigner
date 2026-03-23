@@ -22,7 +22,7 @@ const CaseSlider = () => {
   const { localePath } = useLanguage();
   const [hovering, setHovering] = useState(false);
   const [dragStartPos, setDragStartPos] = useState({ x: 0, y: 0 });
-  const [showSwipeHint, setShowSwipeHint] = useState(true);
+  const swipeHintRef = useRef<HTMLDivElement>(null);
   
   const cases = [
     { key: "gmt", image: caseGmt, slug: "/case/gmt-equipment" },
