@@ -56,14 +56,19 @@ const CaseSlider = () => {
     emblaApi.on("select", updateNavigationState);
     emblaApi.on("reInit", updateNavigationState);
     
-    const hideHint = () => setShowSwipeHint(false);
-    emblaApi.on("scroll", hideHint);
-    const timer = setTimeout(() => setShowSwipeHint(false), 3500);
+    const hideHint = () => {
+      if (swipeHintRef.current) {
+        swipeHintRef.current.style.opacity = "0";
+        swipeHintRef.current.style.pointerEvents = "none";
+      }
+    };
+    emblaApi.on("pointerDown", hideHint);
+    const timer = setTimeout(hideHint, 3500);
     
     return () => {
       emblaApi.off("select", updateNavigationState);
       emblaApi.off("reInit", updateNavigationState);
-      emblaApi.off("scroll", hideHint);
+      emblaApi.off("pointerDown", hideHint);
       clearTimeout(timer);
     };
   }, [emblaApi, updateNavigationState]);
