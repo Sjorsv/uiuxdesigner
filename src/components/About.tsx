@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import portrait from "@/assets/portrait.jpg";
 
 const About = () => {
   const [hovering, setHovering] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <section className="py-32 border-t border-border" id="about">
@@ -14,10 +16,10 @@ const About = () => {
           onMouseLeave={() => setHovering(false)}
         >
           <div className="lg:col-span-4">
-            <span className="section-number">06</span>
-            <span className="section-label ml-4">Over</span>
+            <span className="section-number">{t("about.section_number")}</span>
+            <span className="section-label ml-4">{t("about.section_label")}</span>
             <div className="relative inline-block">
-              <h2 className="heading-lg mt-4">Over UIUXDESIGNER</h2>
+              <h2 className="heading-lg mt-4">{t("about.title")}</h2>
               <AnimatePresence>
                 {hovering && (
                   <motion.div
@@ -27,11 +29,7 @@ const About = () => {
                     exit={{ scale: 0, opacity: 0 }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   >
-                    <img
-                      src={portrait}
-                      alt="Portrait"
-                      className="w-full h-full object-cover scale-125"
-                    />
+                    <img src={portrait} alt="Portrait" className="w-full h-full object-cover scale-125" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -45,15 +43,9 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="body-lg mb-8 font-medium max-w-none whitespace-nowrap">
-              Ik ontwerp en bouw moderne websites voor bedrijven in uiteenlopende sectoren.
-            </p>
-            <p className="body-md mb-8">
-              Mijn focus ligt op helder design, sterke structuur en websites die bezoekers omzetten in klanten.
-            </p>
-            <p className="body-md">
-              Elke website wordt zorgvuldig ontworpen met aandacht voor typografie, gebruiksvriendelijkheid en een uitstraling die past bij het bedrijf erachter.
-            </p>
+            <p className="body-lg mb-8 font-medium max-w-none whitespace-nowrap">{t("about.intro")}</p>
+            <p className="body-md mb-8">{t("about.body1")}</p>
+            <p className="body-md">{t("about.body2")}</p>
           </motion.div>
         </div>
       </div>

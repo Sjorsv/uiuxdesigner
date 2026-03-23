@@ -1,20 +1,17 @@
 import { motion } from "framer-motion";
-
-const steps = [
-  { number: "01", title: "Discover", description: "Doelen, doelgroep en merkidentiteit in kaart brengen." },
-  { number: "02", title: "Structure", description: "Sitemap, content structuur en wireframes opzetten." },
-  { number: "03", title: "Design", description: "Visueel ontwerp dat je merk versterkt en converteert." },
-  { number: "04", title: "Build", description: "Pixel-perfect realisatie, testen en lancering." },
-];
+import { useTranslation } from "react-i18next";
 
 const Process = () => {
+  const { t } = useTranslation();
+  const steps = t("process.steps", { returnObjects: true }) as { number: string; title: string; description: string }[];
+
   return (
     <section className="py-32 border-t border-border" id="process">
       <div className="swiss-container">
         <div className="mb-20">
-          <span className="section-number">05</span>
-          <span className="section-label ml-4">Werkwijze</span>
-          <h2 className="heading-lg mt-4">Proces</h2>
+          <span className="section-number">{t("process.section_number")}</span>
+          <span className="section-label ml-4">{t("process.section_label")}</span>
+          <h2 className="heading-lg mt-4">{t("process.title")}</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">

@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
+import { useTranslation, Trans } from "react-i18next";
 import portfolioCollage from "@/assets/portfolio-collage.png";
 
 const Hero = () => {
+  const { t } = useTranslation();
 
   return (
     <section className="relative overflow-hidden pt-36">
@@ -12,7 +14,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <p className="section-label mb-6">UIUXDESIGNER.NL</p>
+          <p className="section-label mb-6">{t("hero.label")}</p>
 
           <motion.a
             href="#contact"
@@ -22,14 +24,14 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.5, type: "spring", stiffness: 200 }}
             whileHover={{ scale: 1.1, rotate: 5 }}
           >
-            <span className="font-body text-[9px] uppercase tracking-wider leading-tight text-center px-3">Vraag gratis</span>
-            <span className="font-display font-bold text-sm leading-tight text-center">ontwerp</span>
-            <span className="font-body text-[9px] uppercase tracking-wider leading-tight text-center">aan →</span>
+            <span className="font-body text-[9px] uppercase tracking-wider leading-tight text-center px-3">{t("hero.badge_line1")}</span>
+            <span className="font-display font-bold text-sm leading-tight text-center">{t("hero.badge_line2")}</span>
+            <span className="font-body text-[9px] uppercase tracking-wider leading-tight text-center">{t("hero.badge_line3")}</span>
           </motion.a>
 
           <div className="relative">
             <h1 className="heading-xl mb-8 max-w-4xl">
-              Websites voor <span className="text-brand">groeiende</span> bedrijven.
+              <Trans i18nKey="hero.title" components={{ brand: <span className="text-brand" /> }} />
             </h1>
 
             <motion.a
@@ -40,35 +42,34 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.5, type: "spring", stiffness: 200 }}
               whileHover={{ scale: 1.1, rotate: 5 }}
             >
-              <span className="font-body text-[10px] uppercase tracking-wider leading-tight text-center px-3">Vraag gratis</span>
-              <span className="font-display font-bold text-base leading-tight text-center">ontwerp</span>
-              <span className="font-body text-[10px] uppercase tracking-wider leading-tight text-center">aan →</span>
+              <span className="font-body text-[10px] uppercase tracking-wider leading-tight text-center px-3">{t("hero.badge_line1")}</span>
+              <span className="font-display font-bold text-base leading-tight text-center">{t("hero.badge_line2")}</span>
+              <span className="font-body text-[10px] uppercase tracking-wider leading-tight text-center">{t("hero.badge_line3")}</span>
             </motion.a>
           </div>
 
           <p className="body-lg mb-8 max-w-lg">
-            Design, strategie en development.
+            {t("hero.subtitle_line1")}
             <br />
-            Alles in één traject.
+            {t("hero.subtitle_line2")}
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center mb-4">
             <a href="#cases" className="btn-primary">
-              Bekijk projecten
+              {t("hero.cta_projects")}
             </a>
             <a href="#contact" className="btn-outline group">
-              Start een project
+              {t("hero.cta_start")}
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
             </a>
           </div>
 
           <p className="text-sm text-muted-foreground tracking-wide mt-[17px]">
-            Agency kwaliteit, zonder agency prijs
+            {t("hero.tagline")}
           </p>
         </motion.div>
       </div>
 
-      {/* Portfolio collage flowing down */}
       <motion.div
         className="relative z-0 w-full overflow-hidden mt-[106px]"
         initial={{ opacity: 0, y: 60 }}
@@ -82,24 +83,16 @@ const Hero = () => {
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
           >
             <div className="shrink-0 pr-[25px]">
-              <img
-                src={portfolioCollage}
-                alt="Portfolio overzicht van website projecten"
-                className="block h-auto w-[100vw] min-w-[1200px]"
-              />
+              <img src={portfolioCollage} alt={t("hero.portfolio_alt")} className="block h-auto w-[100vw] min-w-[1200px]" />
             </div>
             <div className="shrink-0 pr-[25px]" aria-hidden="true">
-              <img
-                src={portfolioCollage}
-                alt=""
-                className="block h-auto w-[100vw] min-w-[1200px]"
-              />
+              <img src={portfolioCollage} alt="" className="block h-auto w-[100vw] min-w-[1200px]" />
             </div>
           </motion.div>
         </div>
         <div className="swiss-container mt-[5px] text-center">
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-2 opacity-50">
-            <span className="text-brand">★</span> 4.8 · Meer dan 65+ projecten opgeleverd
+            <span className="text-brand">★</span> {t("hero.stats")}
           </p>
         </div>
       </motion.div>
