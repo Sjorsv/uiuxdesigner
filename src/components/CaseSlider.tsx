@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Hand } from "lucide-react";
@@ -22,7 +22,7 @@ const CaseSlider = () => {
   const { localePath } = useLanguage();
   const [hovering, setHovering] = useState(false);
   const [dragStartPos, setDragStartPos] = useState({ x: 0, y: 0 });
-  const [showSwipeHint, setShowSwipeHint] = useState(true);
+  const swipeHintRef = useRef<HTMLDivElement>(null);
   
   const cases = [
     { key: "gmt", image: caseGmt, slug: "/case/gmt-equipment" },
@@ -56,14 +56,19 @@ const CaseSlider = () => {
     emblaApi.on("select", updateNavigationState);
     emblaApi.on("reInit", updateNavigationState);
     
-    const hideHint = () => setShowSwipeHint(false);
-    emblaApi.on("scroll", hideHint);
-    const timer = setTimeout(() => setShowSwipeHint(false), 3500);
+    const hideHint = () => {
+      if (swipeHintRef.current) {
+        swipeHintRef.current.style.opacity = "0";
+        swipeHintRef.current.style.pointerEvents = "none";
+      }
+    };
+    emblaApi.on("pointerDown", hideHint);
+    const timer = setTimeout(hideHint, 3500);
     
     return () => {
       emblaApi.off("select", updateNavigationState);
       emblaApi.off("reInit", updateNavigationState);
-      emblaApi.off("scroll", hideHint);
+      emblaApi.off("pointerDown", hideHint);
       clearTimeout(timer);
     };
   }, [emblaApi, updateNavigationState]);
@@ -85,16 +90,12 @@ const CaseSlider = () => {
       </div>
 
       <div className="overflow-hidden px-6 md:px-12 lg:px-16 cursor-grab active:cursor-grabbing relative" ref={emblaRef}>
-        <AnimatePresence>
-          {showSwipeHint && (
-            <motion.div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-              <motion.div className="flex items-center gap-2 bg-primary/90 text-primary-foreground px-5 py-3 rounded-full shadow-lg" animate={{ x: [0, 40, 0] }} transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}>
-                <Hand className="w-5 h-5" />
-                <span className="text-sm font-medium">{t("cases.swipe")}</span>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div ref={swipeHintRef} className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none transition-opacity duration-300">
+          <motion.div className="flex items-center gap-2 bg-primary/90 text-primary-foreground px-5 py-3 rounded-full shadow-lg" animate={{ x: [0, 40, 0] }} transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}>
+            <Hand className="w-5 h-5" />
+            <span className="text-sm font-medium">{t("cases.swipe")}</span>
+          </motion.div>
+        </div>
         <div className="flex gap-8 select-none">
           {cases.map((project, index) => (
             <motion.div
