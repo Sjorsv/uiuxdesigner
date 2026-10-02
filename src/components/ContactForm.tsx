@@ -30,8 +30,6 @@ const ContactForm = () => {
   // Spam protection
   const [honeypot, setHoneypot] = useState("");
   const [formLoadedAt] = useState(() => Date.now());
-  const [notBot, setNotBot] = useState(false);
-  const [botError, setBotError] = useState(false);
 
   const handleChange = (field: keyof ContactFormType, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -52,17 +50,12 @@ const ContactForm = () => {
       return;
     }
 
-    // Spam checks: honeypot filled, submitted too fast, or wrong math answer
+    // Invisible spam checks: honeypot filled or submitted too fast
     if (honeypot) return; // silently drop bot submissions
     if (Date.now() - formLoadedAt < 3000) {
       toast.error(t("contact.error_send"));
       return;
     }
-    if (parseInt(mathAnswer.trim(), 10) !== mathCheck.answer) {
-      setMathError(true);
-      return;
-    }
-    setMathError(false);
 
     setSending(true);
     try {
@@ -74,7 +67,7 @@ const ContactForm = () => {
           _subject: `Nieuw contactbericht van ${result.data.name}`,
           _replyto: result.data.email,
           _template: "table",
-          _captcha: "false",
+          _captcha: "true",
           _honeytoken: honeypot,
           Naam: result.data.name,
           Email: result.data.email,
@@ -169,20 +162,6 @@ const ContactForm = () => {
                   autoComplete="off"
                   aria-hidden="true"
                 />
-                <div>
-                  <label className="block font-body text-sm text-muted-foreground pt-2">
-                    {t("contact.math_question", { a: mathCheck.a, b: mathCheck.b })}
-                  </label>
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    value={mathAnswer}
-                    onChange={(e) => { setMathAnswer(e.target.value); setMathError(false); }}
-                    className={inputClasses}
-                    maxLength={3}
-                  />
-                  {mathError && <p className="text-xs text-destructive mt-1 font-body">{t("contact.error_math")}</p>}
-                </div>
                 <label className="flex items-center gap-3 cursor-pointer pt-2">
                   <input type="checkbox" checked={freeConcept} onChange={(e) => setFreeConcept(e.target.checked)} className="w-5 h-5 rounded border-border accent-brand cursor-pointer" />
                   <span className="font-body text-sm text-muted-foreground">{t("contact.free_concept")}</span>
