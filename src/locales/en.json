@@ -148,7 +148,9 @@
     "success_toast": "Message sent! We'll be in touch soon.",
     "error_name": "Name is required",
     "error_email": "Invalid email address",
-    "error_message": "Message is required"
+    "error_message": "Message is required",
+    "error_send": "Something went wrong while sending. Please try again.",
+    "submitting": "Sending..."
   },
   "faq": {
     "section_number": "08",
