@@ -27,6 +27,16 @@ const ContactForm = () => {
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormType, string>>>({});
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  // Spam protection
+  const [honeypot, setHoneypot] = useState("");
+  const [formLoadedAt] = useState(() => Date.now());
+  const [mathCheck] = useState(() => {
+    const a = 2 + Math.floor(Math.random() * 7);
+    const b = 1 + Math.floor(Math.random() * 8);
+    return { a, b, answer: a + b };
+  });
+  const [mathAnswer, setMathAnswer] = useState("");
+  const [mathError, setMathError] = useState(false);
 
   const handleChange = (field: keyof ContactFormType, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -47,6 +57,18 @@ const ContactForm = () => {
       return;
     }
 
+    // Spam checks: honeypot filled, submitted too fast, or wrong math answer
+    if (honeypot) return; // silently drop bot submissions
+    if (Date.now() - formLoadedAt < 3000) {
+      toast.error(t("contact.error_send"));
+      return;
+    }
+    if (parseInt(mathAnswer.trim(), 10) !== mathCheck.answer) {
+      setMathError(true);
+      return;
+    }
+    setMathError(false);
+
     setSending(true);
     try {
       // Email delivery via FormSubmit (works on any host, no backend needed)
@@ -58,6 +80,7 @@ const ContactForm = () => {
           _replyto: result.data.email,
           _template: "table",
           _captcha: "false",
+          _honeytoken: honeypot,
           Naam: result.data.name,
           Email: result.data.email,
           Bedrijf: result.data.company || "-",
@@ -139,6 +162,31 @@ const ContactForm = () => {
                 <div>
                   <textarea placeholder={t("contact.message_placeholder")} value={form.message} onChange={(e) => handleChange("message", e.target.value)} className={`${inputClasses} resize-none min-h-[120px]`} maxLength={2000} rows={4} />
                   {errors.message && <p className="text-xs text-destructive mt-1 font-body">{errors.message}</p>}
+                </div>
+                {/* Honeypot: invisible to humans, bots fill it in */}
+                <input
+                  type="text"
+                  name="website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  className="absolute opacity-0 pointer-events-none h-0 w-0"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+                <div>
+                  <label className="block font-body text-sm text-muted-foreground pt-2">
+                    {t("contact.math_question", { a: mathCheck.a, b: mathCheck.b })}
+                  </label>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    value={mathAnswer}
+                    onChange={(e) => { setMathAnswer(e.target.value); setMathError(false); }}
+                    className={inputClasses}
+                    maxLength={3}
+                  />
+                  {mathError && <p className="text-xs text-destructive mt-1 font-body">{t("contact.error_math")}</p>}
                 </div>
                 <label className="flex items-center gap-3 cursor-pointer pt-2">
                   <input type="checkbox" checked={freeConcept} onChange={(e) => setFreeConcept(e.target.checked)} className="w-5 h-5 rounded border-border accent-brand cursor-pointer" />

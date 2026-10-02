@@ -150,6 +150,8 @@
     "error_email": "Invalid email address",
     "error_message": "Message is required",
     "error_send": "Something went wrong while sending. Please try again.",
+    "math_question": "Anti-spam: what is {{a}} + {{b}}?",
+    "error_math": "The answer to the math question is incorrect.",
     "submitting": "Sending..."
   },
   "faq": {
