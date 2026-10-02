@@ -27,6 +27,16 @@ const ContactForm = () => {
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormType, string>>>({});
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  // Spam protection
+  const [honeypot, setHoneypot] = useState("");
+  const [formLoadedAt] = useState(() => Date.now());
+  const [mathCheck] = useState(() => {
+    const a = 2 + Math.floor(Math.random() * 7);
+    const b = 1 + Math.floor(Math.random() * 8);
+    return { a, b, answer: a + b };
+  });
+  const [mathAnswer, setMathAnswer] = useState("");
+  const [mathError, setMathError] = useState(false);
 
   const handleChange = (field: keyof ContactFormType, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -46,6 +56,18 @@ const ContactForm = () => {
       setErrors(fieldErrors);
       return;
     }
+
+    // Spam checks: honeypot filled, submitted too fast, or wrong math answer
+    if (honeypot) return; // silently drop bot submissions
+    if (Date.now() - formLoadedAt < 3000) {
+      toast.error(t("contact.error_send"));
+      return;
+    }
+    if (parseInt(mathAnswer.trim(), 10) !== mathCheck.answer) {
+      setMathError(true);
+      return;
+    }
+    setMathError(false);
 
     setSending(true);
     try {
