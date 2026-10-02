@@ -150,6 +150,8 @@
     "error_email": "Ongeldig e-mailadres",
     "error_message": "Bericht is verplicht",
     "error_send": "Er ging iets mis bij het verzenden. Probeer het opnieuw.",
+    "math_question": "Anti-spam: hoeveel is {{a}} + {{b}}?",
+    "error_math": "Het antwoord op de rekensom klopt niet.",
     "submitting": "Versturen..."
   },
   "faq": {
