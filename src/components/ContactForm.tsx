@@ -128,7 +128,9 @@ const ContactForm = () => {
                   <span className="font-body text-sm text-muted-foreground">{t("contact.free_concept")}</span>
                 </label>
                 <div className="pt-6">
-                  <button type="submit" className="btn-primary">{t("contact.submit")}</button>
+                  <button type="submit" className="btn-primary" disabled={sending}>
+                    {sending ? t("contact.submitting") : t("contact.submit")}
+                  </button>
                 </div>
               </form>
             )}
