@@ -49,14 +49,31 @@ const ContactForm = () => {
 
     setSending(true);
     try {
-      const { error } = await supabase.from("contact_submissions").insert({
+      // Email delivery via FormSubmit (works on any host, no backend needed)
+      const res = await fetch("https://formsubmit.co/ajax/uiuxdesignernl@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `Nieuw contactbericht van ${result.data.name}`,
+          _replyto: result.data.email,
+          _template: "table",
+          _captcha: "false",
+          Naam: result.data.name,
+          Email: result.data.email,
+          Bedrijf: result.data.company || "-",
+          Bericht: result.data.message,
+          "Gratis concept": freeConcept ? "Ja" : "Nee",
+        }),
+      });
+      if (!res.ok) throw new Error(`Send failed: ${res.status}`);
+      // Best-effort backup copy (ignored if backend unavailable)
+      supabase.from("contact_submissions").insert({
         name: result.data.name,
         email: result.data.email,
         company: result.data.company || null,
         message: result.data.message,
         free_concept: freeConcept,
-      });
-      if (error) throw error;
+      }).then(() => {}, () => {});
       setSubmitted(true);
       toast.success(t("contact.success_toast"));
     } catch (err) {
