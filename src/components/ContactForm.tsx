@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { z } from "zod";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactForm = () => {
   const { t } = useTranslation();
@@ -25,13 +26,14 @@ const ContactForm = () => {
   const [freeConcept, setFreeConcept] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormType, string>>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const handleChange = (field: keyof ContactFormType, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = contactSchema.safeParse(form);
 
@@ -45,8 +47,24 @@ const ContactForm = () => {
       return;
     }
 
-    setSubmitted(true);
-    toast.success(t("contact.success_toast"));
+    setSending(true);
+    try {
+      const { error } = await supabase.from("contact_submissions").insert({
+        name: result.data.name,
+        email: result.data.email,
+        company: result.data.company || null,
+        message: result.data.message,
+        free_concept: freeConcept,
+      });
+      if (error) throw error;
+      setSubmitted(true);
+      toast.success(t("contact.success_toast"));
+    } catch (err) {
+      console.error("Contact form submission failed:", err);
+      toast.error(t("contact.error_send"));
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputClasses =
