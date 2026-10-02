@@ -30,13 +30,8 @@ const ContactForm = () => {
   // Spam protection
   const [honeypot, setHoneypot] = useState("");
   const [formLoadedAt] = useState(() => Date.now());
-  const [mathCheck] = useState(() => {
-    const a = 2 + Math.floor(Math.random() * 7);
-    const b = 1 + Math.floor(Math.random() * 8);
-    return { a, b, answer: a + b };
-  });
-  const [mathAnswer, setMathAnswer] = useState("");
-  const [mathError, setMathError] = useState(false);
+  const [notBot, setNotBot] = useState(false);
+  const [botError, setBotError] = useState(false);
 
   const handleChange = (field: keyof ContactFormType, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
