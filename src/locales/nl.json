@@ -148,7 +148,9 @@
     "success_toast": "Bericht verzonden! We nemen snel contact op.",
     "error_name": "Naam is verplicht",
     "error_email": "Ongeldig e-mailadres",
-    "error_message": "Bericht is verplicht"
+    "error_message": "Bericht is verplicht",
+    "error_send": "Er ging iets mis bij het verzenden. Probeer het opnieuw.",
+    "submitting": "Versturen..."
   },
   "faq": {
     "section_number": "08",
